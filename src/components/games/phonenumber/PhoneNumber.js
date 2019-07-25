@@ -74,7 +74,7 @@ class PhoneNumber extends React.Component {
         this.updateOrignalNumber();
         this.updateStatusBy1();
         this.tenSecondStartStop();
-        setTimeout(() => this.tenSecondStartStop(), 5000);
+        //setTimeout(() => this.tenSecondStartStop(), 6000);
     }
 
     updateQuestionNos = () => {                         //-Getting two numbers, which will be sum-upat the end
@@ -104,21 +104,25 @@ class PhoneNumber extends React.Component {
     tenSecondStartStop = () => {
         var resetTimer = this.state.status;
         resetTimer.second = 0;
-        resetTimer.timer = setInterval(() => { this.secondWait() }, 1000);
+         resetTimer.timer = setInterval(() => { this.secondWait() }, 1000);
         this.setState({ resetTimer });
     }
 
     secondWait = () => {
         var increaseTimer = this.state.status;
         increaseTimer.second = increaseTimer.second + 1;
-        if (increaseTimer.second < 5) {
-            //------------------------------------this.setState({ increaseTimer });
-        } else {
-            //increaseTimer.second = 0;
-            //increaseTimer.status = increaseTimer.status + 1;
+        if (Number(increaseTimer.second) === 5) {
             this.updateStatusBy1();
-            clearInterval(this.state.status.timer);
+        } else if (Number(increaseTimer.second) === 10) {
+                 this.updateStatusBy1();
+                clearInterval(this.state.status.timer);
         }
+        //if (increaseTimer.second < 10) {
+        //
+        //} else {
+        //    this.updateStatusBy1();
+        //    clearInterval(this.state.status.timer);
+        //}
         this.setState({ increaseTimer });
     }
     
@@ -315,7 +319,7 @@ const GameInfoShowRow = () => {
     return (
         <div className="col-md-7 pl-5">
             <div className="text-left  text-dark">
-                <div className="h4"> &#9816; Remeber Me  <span className="small"> (v.2) </span> </div>
+                <div className="h4"> &#9816; Remeber Me  <span className="small"> (v.3) </span> </div>
                 <ul className="list-group small text-dark ">
                     <li className="list-group-item"><span className="small text-info">Goal &#10095; </span> Short-timer memory development</li>
                     <li className="list-group-item"><span className="small text-info">Objective &#10095; </span>Remember an 8 digit number (34562389) in form of 4 double digits numbers (34, 56, 23, 89) for 10 seconds</li>
