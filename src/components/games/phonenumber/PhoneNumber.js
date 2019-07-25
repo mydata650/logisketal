@@ -11,6 +11,7 @@ class PhoneNumber extends React.Component {
     }
     
     state = {};
+
     getInitialState = () => {
         const initialState =
         {
@@ -69,7 +70,6 @@ class PhoneNumber extends React.Component {
             tempState.phonenumber.numbers = [-1, -1, -1, -1];
             this.setState({ tempState });
         }
-        
         this.updateQuestionNos();
         this.updateOrignalNumber();
         this.updateStatusBy1();
@@ -104,8 +104,8 @@ class PhoneNumber extends React.Component {
     tenSecondStartStop = () => {
         var resetTimer = this.state.status;
         resetTimer.second = 0;
-        this.setState({ resetTimer });
         resetTimer.timer = setInterval(() => { this.secondWait() }, 1000);
+        this.setState({ resetTimer });
     }
 
     secondWait = () => {
@@ -119,7 +119,6 @@ class PhoneNumber extends React.Component {
             this.updateStatusBy1();
             clearInterval(this.state.status.timer);
         }
-        
         this.setState({ increaseTimer });
     }
     
@@ -213,7 +212,7 @@ const NewGameButtonRow = (props) => {
     return (
         <div className="row headPad">
             <div className="col-2"> <kbd className="bg-danger mt-2">{props.second}</kbd></div>
-            <div className="col-6 tempFontOpenSans py-1 text-danger"><span className=""> &#9816;</span>  Remember me </div>
+            <div className="col-6 tempFontOpenSans py-1 text-danger"><span className=""> &#9816;</span>  Remember me  </div>
             <div className="col-4 noPadding text-right"><button type="button" onClick={window.phoneNumberMainClass.newGame} className="btn btn-warning btn-sm mt-1" disabled={Number(props.status) === 0 || Number(props.status) === 5 ? false : true}  >&#9760;  New game </button> </div>
         </div>
     );
@@ -316,7 +315,7 @@ const GameInfoShowRow = () => {
     return (
         <div className="col-md-7 pl-5">
             <div className="text-left  text-dark">
-                <div className="h4"> &#9816; Remeber Me </div>
+                <div className="h4"> &#9816; Remeber Me  <span className="small"> (v.2) </span> </div>
                 <ul className="list-group small text-dark ">
                     <li className="list-group-item"><span className="small text-info">Goal &#10095; </span> Short-timer memory development</li>
                     <li className="list-group-item"><span className="small text-info">Objective &#10095; </span>Remember an 8 digit number (34562389) in form of 4 double digits numbers (34, 56, 23, 89) for 10 seconds</li>
