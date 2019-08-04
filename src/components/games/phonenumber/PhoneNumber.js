@@ -171,12 +171,9 @@ class PhoneNumber extends React.Component {
                 if (Number(tempStateResult.results[i]) !== 10) { failed = 7; break; }
             }
             errorMsg(failed);
-
             //-Compare the hidden number with entered number and then show the result accordingly..
-            alert("Game has finished!!");
         }
     }
-    
     render() {
         return (
             <div className="container mt-4">
@@ -358,7 +355,7 @@ function getSingleNo() {
 function resetAllInputFields(){
     var inputArray = document.getElementsByTagName("input");
     for (var index = 0; index < inputArray.length; index++) {
-        if (inputArray[index].type == "text") {
+        if (inputArray[index].type == "number") {
             inputArray[index].value = "";
         }
     }
