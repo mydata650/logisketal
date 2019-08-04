@@ -186,6 +186,17 @@ class GamesPage extends React.Component {
             document.getElementById("focusguard-1").focus();
         }
     }
+
+    NewGameButtonRow = () => {
+        return (
+            <div className="row headPad">
+                <div className="col-3"><button type="button" className="btn btn-info btn-sm mt-1" onClick={this.handleCheckClick} id="checkButton" >Check </button> </div>
+                <div className="col-7"><span className="tempFontOpenSans pt-3 h-100"> &#8506; BullsCows </span></div>
+                <div className="col-2 noPadding"><button type="button" onClick={this.newGame} className="btn btn-info btn-sm mt-1">Reset </button> </div>
+            </div>
+        );
+    }
+
     render() {
         return (
             <div className="container mt-4">
@@ -195,7 +206,7 @@ class GamesPage extends React.Component {
                             <div className="col-3"><button type="button" className="btn btn-info btn-sm mt-1" onClick={this.handleCheckClick} id="checkButton" >Check </button> </div>
                             <div className="col-7"><span className="tempFontOpenSans pt-3 h-100"> &#8506; BullsCows </span></div>
                             <div className="col-2 noPadding"><button type="button" onClick={this.newGame} className="btn btn-info btn-sm mt-1">Reset </button> </div>
-                        </div>                        <hr />
+                        </div>                          <hr />
                         <div className="row">
                             <div className="col-4">Enter No.</div>
                             <div className="focusguard" id="focusguard-1" tabIndex="1"></div>
@@ -203,10 +214,10 @@ class GamesPage extends React.Component {
                             <div className="col-2 noPadding"><input type="number" className="form-control" min="0" max="9" step="1" id="digit2" tabIndex="3" onKeyDown={this.enterPressed} onChange={e => this.handleClickDigit(e.target.value, "digit2")}/></div>       
                             <div className="col-2 noPadding"><input type="number" className="form-control" min="0" max="9" step="1" id="digit3" tabIndex="4" onKeyDown={this.enterPressed} onChange={e => this.handleClickDigit(e.target.value, "digit3")}  /></div>       
                             <div className="col-2 noPadding"><input type="number" className="form-control" min="0" max="9" step="1" id="digit4" tabIndex="5" onKeyDown={this.enterPressedLast} onChange={e => this.handleClickDigit(e.target.value, "digit4")} /></div>       
-                           </div>                        <hr />
+                           </div>                         <hr />
                         <div className="row">
                             <div className="col-12"><span className="small">Msg: </span> <span id="msgShow" className={this.state.status.status === 1 ? "small text-success" : (this.state.status.status === 2 ? "small text-danger" : "small text-info")}> </span></div>
-                        </div>                        <hr />
+                        </div>                         <hr />
                         <div className="row">
                             <div className="col-6">{this.state.Timer.hour} : {this.state.Timer.minut} : {this.state.Timer.second} </div>
                             <div className="col-6"><span className="small">Hidden No.  </span>
@@ -214,7 +225,7 @@ class GamesPage extends React.Component {
                                         {this.state.status.status === 0 ? "????" : getNumberFromArray(this.state.Orignal.digits)}
                                 </span>
                             </div>
-                       </div>                        <hr />
+                       </div>                         <hr />
                         <div className="row">
                             <div className="col-6"> <u>Guessed  </u></div>
                             <div className="col-3"> <u>Exist</u></div>  
@@ -292,8 +303,6 @@ const GameInfoRowShow = () => {
         </div>
     )
 }
-
-
 function isAllDigitsAreProper(array) {
     var result = true
     for (var i = 0; i < array.length; i++) {

@@ -91,6 +91,11 @@ hr {
     margin-bottom: 2px !important;
 }
 .noPadding {padding-left:0px !important;}
+.padd2 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    font-size: 20px !important;
+}
 
 .greenColor {
     color: #34421E;
@@ -186,6 +191,16 @@ hr {
 .classNoShow{}
 .ftTimerWidh {width: 100%}
 .padTop5 {padding-top: 5px !important;}
+.numberOne{
+    position: relative;
+    z-index: 0;
+    
+}
+.numberTwo {
+    position: relative;
+    z-index: 1;
+    margin-left: -14px !important;
+}
 
 
 /************************************media */
