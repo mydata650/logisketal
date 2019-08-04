@@ -336,7 +336,7 @@ const QuestionsShowRow = (props) => {
                 </span>
             </div>
             <div className="col-5 ml-0 pl-0">
-                <input type="text" id={props.inputIDs[i]} className="form-control inputFont20" onKeyDown={( (e) => window.fastTrackMainClass.enterPressed(e))  } disabled={Number(props.qNo) === i && Number(props.disab) === 1 ? false : true} autoFocus={Number(props.qNo) === i && Number(props.disab) === 1 ? true : false} />
+                <input type="number" id={props.inputIDs[i]} className="form-control inputFont20" onKeyDown={( (e) => window.fastTrackMainClass.enterPressed(e))  } disabled={Number(props.qNo) === i && Number(props.disab) === 1 ? false : true} autoFocus={Number(props.qNo) === i && Number(props.disab) === 1 ? true : false} />
             </div>
             <div className="col-2  ml-0 pl-0 text-left">
                 <button type="button" onClick={(() => window.fastTrackMainClass.checkEnteredValue())} className={Number(props.qNo) === i && Number(props.disab) === 1 ? "btn btn-success px-1 small text-bold" : "btn btn-warning px-1 small text-bold"} disabled={Number(props.qNo) === i && Number(props.disab) === 1 ? false : true}>Check </button>
@@ -403,7 +403,6 @@ function errorMsg(errorCode) {
     ]
     document.getElementById('msgShow').innerHTML = errors[errorCode];
 }
-
 function checkAnswer(op, nu, de, answer) {
     var result = false;
     var tempResult = 0;
@@ -414,7 +413,6 @@ function checkAnswer(op, nu, de, answer) {
     if (tempResult == answer) { result = true;}
     return result;
 }
-
 function checkEnteredValue(enteredValue, tempID) {
     if (isNaN(enteredValue)) {
         errorMsg(6);

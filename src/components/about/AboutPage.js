@@ -2,20 +2,32 @@
 //import { Link } from "react-router-dom";
 import GamesPage from "../games/bullscows/GamesPage";
 import PhoneNumber from "../games/phonenumber/PhoneNumber";
-
+import FastTrackFile from "../games/fasttrack/FastTrack";
 
 const AboutPage = () => {
     return (
         <div className="container pt-4 border">
-            <h2>List of games </h2>
-            <div className="card-columns">
+            <GameNumbers />
+            <div className="card-columns pt-4">
                 <BullsCows />
                 <RememberMe />
                 <ComingSoon />
+                <PlaceMe />
                 <FastTrack />
             </div>
         </div>
     );
+}
+
+const GameNumbers = () => {
+    return (
+        <div className="row pl-4 border-bottom">
+            <div className="col-xs-1 text-right numberOne h2"> </div>
+            <div className="col-xs-1 text-left  numberTwo h2">&#10106;</div>
+            <div className="col-xs-2 h2 tempFontPrincess pl-1 text-info"> games </div>
+            <div className="col-xs-8"> </div>
+        </div>
+    )
 }
 
 const FastTrack = () => {
@@ -28,11 +40,12 @@ const FastTrack = () => {
                     A game which handles basic arithmetic questions, where player has to solve simple calculation at fast track. Precisely 10 questions should be answered within 60 seconds. Each wrong answer will cost 8 seconds but right question will earn more 2 seconds.
                     Beside the solution, option could also be like should I solve or not, to save the time.
                         </p>
-                <a href="/fasttrack" component={PhoneNumber} className="btn btn-success btn-block"> Play game </a>
+                <a href="/fasttrack" component={FastTrackFile} className="btn btn-success btn-block"> Play game </a>
             </div>
         </div>
     )
 }
+
 const ComingSoon = () => {
     return (
         <div className="card shadow">
@@ -45,6 +58,20 @@ const ComingSoon = () => {
         </div>
     )
 }
+
+const PlaceMe = () => {
+    return (
+        <div className="card shadow">
+            <div className="card-img-top display-1 text-bold text-center text-info" >&#9906; </div>
+            <div className="card-body">
+                <h4 className="card-title"><span className="badge badge-secondary border">105 </span> PlaceMe </h4>
+                <p className="card-text">Player has to write digits between 1 and 9 on proper place with in 1 minute. Objective of the game is to develop analytical view in short time </p>
+                <a href="/placeme" component={PlaceMe} className="btn btn-success btn-block"> Play game </a>
+            </div>
+        </div>
+    )
+}
+
 const RememberMe = () => {
     return (
         <div className="card shadow">
@@ -57,6 +84,7 @@ const RememberMe = () => {
         </div>
     )
 }
+
 const BullsCows = () => {
     return (
         <div className="card shadow">
@@ -69,7 +97,6 @@ const BullsCows = () => {
         </div>
     )
 }
-
 
 export default AboutPage;
 

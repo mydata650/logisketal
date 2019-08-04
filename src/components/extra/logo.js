@@ -1,40 +1,41 @@
-/*
-//-logic to improt an image from local directory
-import logo from './logo.svg';
+<aside>
+    <div className="row">
+        <div className="col-1"> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" value="6" disabled /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" value="9" disabled /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" value="12" disabled /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" value="19" disabled /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" value="12" disabled /> </div>
+        <div className="col-1"> </div>
+    </div>
 
-<header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="row pt-4">
+        <div className="col-1"> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" value="21" disabled /> </div>
+        <div className="col-2"><input type="number" className=" form-control inputFont20" /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" /> </div>
+        <div className="col-2"> </div>
+        <div className="col-1"> </div>
+    </div>
 
+    <div className="row pt-4">
+        <div className="col-1"> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" value="32" disabled /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" /> </div>
+        <div className="col-2"> </div>
+        <div className="col-1"> </div>
+    </div>
 
-
-
------From index.js
-
-//import * as serviceWorker from './serviceWorker';
-
-//ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-
-//serviceWorker.unregister();
-
-
-
-
-
-
-*/
+    <div className="row pt-4">
+        <div className="col-1"> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" value="12" disabled /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" /> </div>
+        <div className="col-2"><input type="number" className="form-control inputFont20" /> </div>
+        <div className="col-2"> </div>
+        <div className="col-1"> </div>
+    </div>
+</aside>

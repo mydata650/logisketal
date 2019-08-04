@@ -2,7 +2,6 @@ import React from 'react';
 //import { isEmptyStatement } from '@babel/types';
 import { FaCheck, FaFrown } from 'react-icons/fa';
 
-
 class PhoneNumber extends React.Component {
     constructor(props) {
         super(props);
@@ -11,7 +10,6 @@ class PhoneNumber extends React.Component {
     }
     
     state = {};
-
     getInitialState = () => {
         const initialState =
         {
@@ -53,7 +51,6 @@ class PhoneNumber extends React.Component {
         };
         return initialState;
     }
-
     newGame = () => {
         //var run = 0;
         if (this.state.status.status > 1) {
@@ -76,21 +73,18 @@ class PhoneNumber extends React.Component {
         this.tenSecondStartStop();
         //setTimeout(() => this.tenSecondStartStop(), 6000);
     }
-
     updateQuestionNos = () => {                         //-Getting two numbers, which will be sum-upat the end
         var tempState = this.state.QuestionNos;
         tempState.No1 = getSingleNo();
         tempState.No2 = getSingleNo();
         this.setState({ tempState });
     }
-
     updateOrignalNumber = () => {
         var tempState = this.state;
         tempState.Orignal.numbers = getRandomNo();
         tempState.Orignal.numberShow = tempState.Orignal.numbers;
         this.setState({tempState});
     }
-
     updateStatusBy1 = () => {
         var tempState = this.state.status;
         tempState.status = tempState.status + 1;
@@ -100,14 +94,12 @@ class PhoneNumber extends React.Component {
             document.getElementById("txtQuestinAnswer").focus();
         }
     }
-
     tenSecondStartStop = () => {
         var resetTimer = this.state.status;
         resetTimer.second = 0;
          resetTimer.timer = setInterval(() => { this.secondWait() }, 1000);
         this.setState({ resetTimer });
     }
-
     secondWait = () => {
         var increaseTimer = this.state.status;
         increaseTimer.second = increaseTimer.second + 1;
@@ -125,7 +117,6 @@ class PhoneNumber extends React.Component {
         //}
         this.setState({ increaseTimer });
     }
-    
     CheckQuestionAnswer = () => {
         var values = this.state.QuestionNos;
         var enteredValue = document.getElementById("txtQuestinAnswer");
@@ -141,7 +132,6 @@ class PhoneNumber extends React.Component {
             //-set
         }
     }
-
     showInputTextField = () => {
         var txtIDs = ["Txt1stNo", "Txt2ndNo", "Txt3rdNo", "Txt4thNo"];
         var stateRandomNo = this.state.randomNo;
@@ -160,7 +150,6 @@ class PhoneNumber extends React.Component {
             }
         }
     }
-    
     checkEnteredValue = (value) => {
         var enteredValue = document.getElementById(value).value;
         var tempStateResult = this.state.results;
@@ -265,7 +254,7 @@ const FirstNumberShowRow = (props) => {
                 </span>
             </div>
             <div className="col-5 ml-0 pl-0">
-                <input type="text" id="Txt1stNo" className="form-control inputFont40" maxLength="2"  />
+                <input type="number" id="Txt1stNo" className="form-control inputFont40" maxLength="2"  />
             </div>
             <div className="col-3 text-right ml-0 pl-0 d-flex">
                 <span className={Number(props.results[0]) === 2 ? 'd-block' : 'd-none'}>
@@ -283,7 +272,7 @@ const SecondNumberShowRow = (props) => {
                 <span className={Number(props.results[1]) === 2 ? 'text-info' : Number(props.results[1]) === 9 ? 'text-danger' : Number(props.results[1]) === 10 ? 'text-success' : ''}>
                     2nd number:
                 {Number(props.results[1]) === 9 ? <FaFrown /> : Number(props.results[1]) === 10 ? <FaCheck /> : ""}</span>  </div>
-            <div className="col-5 ml-0 pl-0 "> <input type="text" id="Txt2ndNo" className="form-control inputFont40" maxLength="2" /></div>
+            <div className="col-5 ml-0 pl-0 "> <input type="number" id="Txt2ndNo" className="form-control inputFont40" maxLength="2" /></div>
             <div className="col-3 text-right  ml-0 pl-0 d-flex"><span className={Number(props.results[1]) === 2 ? 'd-block' : 'd-none'}> <button type="button" onClick={(() => window.phoneNumberMainClass.checkEnteredValue("Txt2ndNo"))} className="btn btn-warning small ml-0"> Check </button></span></div>
         </div>
     );
@@ -296,7 +285,7 @@ const ThirdNumberShowRow = (props) => {
                 <span className={Number(props.results[2]) === 2 ? 'text-info' : Number(props.results[2]) === 9 ? 'text-danger' : Number(props.results[2]) === 10 ? 'text-success' : ''}>
                     3rd number:
                 {Number(props.results[2]) === 9 ? <FaFrown /> : Number(props.results[2]) === 10 ? <FaCheck /> : ""}</span>  </div>
-            <div className="col-5 ml-0 pl-0 "> <input type="text" id="Txt3rdNo" className="form-control inputFont40" maxLength="2" /></div>
+            <div className="col-5 ml-0 pl-0 "> <input type="number" id="Txt3rdNo" className="form-control inputFont40" maxLength="2" /></div>
             <div className="col-3 text-right  ml-0 pl-0 d-flex"><span className={Number(props.results[2]) === 2 ? 'd-block' : 'd-none'}> <button type="button" onClick={(() => window.phoneNumberMainClass.checkEnteredValue("Txt3rdNo"))} className="btn btn-warning small ml-0"> Check </button></span></div>
         </div>
     );
@@ -309,7 +298,7 @@ const ForthNumberShowRow = (props) => {
                 <span className={Number(props.results[3]) === 2 ? 'text-info' : Number(props.results[3]) === 9 ? 'text-danger' : Number(props.results[3]) === 10 ? 'text-success' : ''}>
                     4th number:
                 {Number(props.results[3]) === 9 ? <FaFrown /> : Number(props.results[3]) === 10 ? <FaCheck /> : ""} </span>  </div>
-            <div className="col-5 ml-0 pl-0"> <input type="text" id="Txt4thNo" className="form-control inputFont40" maxLength="2"  /></div>
+            <div className="col-5 ml-0 pl-0"> <input type="number" id="Txt4thNo" className="form-control inputFont40" maxLength="2"  /></div>
             <div className="col-3 text-right ml-0 pl-0 d-flex"><span className={Number(props.results[3]) === 2 ? 'd-block' : 'd-none'}> <button type="button" onClick={(() => window.phoneNumberMainClass.checkEnteredValue("Txt4thNo"))} className="btn btn-warning small ml-0"> Check </button></span></div>
         </div>
     );
@@ -317,7 +306,7 @@ const ForthNumberShowRow = (props) => {
 
 const GameInfoShowRow = () => {
     return (
-        <div className="col-md-7 pl-5">
+        <div className="col-md-7 pl-5 pt-2">
             <div className="text-left  text-dark">
                 <div className="h4"> &#9816; Remeber Me  <span className="small"> (v.3) </span> </div>
                 <ul className="list-group small text-dark ">
@@ -338,7 +327,7 @@ const GameInfoShowRow = () => {
         </div>
     );
 }
-/*pracised skill, Objective, Procedure, Tips */
+
 const ResponseMsgShowRow = () => {
     return (
         <div className="row">
