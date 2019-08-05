@@ -236,7 +236,7 @@ const AskQuestionShowRow = (props) => {
             <div className="row">
                 <div className="col-12">Answer the quesiton:</div>
                 <div className="col-4 text-right"> <span className="h4"> {props.numbersToSum.No1}  + {props.numbersToSum.No2} = </span></div>
-                <div className="col-5"><input type="text" className=" form-control inputFont40" maxLength="3" id="txtQuestinAnswer"  />   </div>
+                <div className="col-5"><input type="number" className=" form-control inputFont40" maxLength="3" id="txtQuestinAnswer"  />   </div>
                 <div className="col-3"><input type="submit" className=" btn btn-success" maxLength="3" onClick={window.phoneNumberMainClass.CheckQuestionAnswer} id="btnQuestinAnswer" value="Check " />   </div>
             </div> </span>
     );
