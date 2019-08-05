@@ -27,7 +27,7 @@ const ShowFirstRow = () => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6 col-sm-12 col-xs-12  bgc1 greenColor height315px"><aside className="h2 py-4"> &#10112;<br />Loetal contains various number games which helps in logic and memory development.</aside></div>
+                    <div className="col-md-6 col-sm-12 col-xs-12  bgc1 greenColor height315px"><aside className="h2 py-4"> &#10112;<br />Loetal contains various number games which help in logic and memory development.</aside></div>
                     <div className="col-md-6 col-sm-12  col-xs-12 bgc2 height315px py-5">
                         <ShowQuete saying="Numbers are the most certain things we have" writer="Andy Rooney" />
                         <br/>

@@ -13,7 +13,7 @@ render(
     <div>
     <Router>
         <App />
-    </Router>,
+    </Router>
     <CookieConsent
         onAccept={() => { }}
         debug={false}
@@ -27,5 +27,3 @@ render(
     
     document.getElementById("root")
 );
-
-
