@@ -202,6 +202,15 @@ hr {
     margin-left: -14px !important;
 }
 
+.buttW30 {
+    width: 65px !important;
+    position: relative;
+}
+
+.buttW50 {
+    position: relative;
+    width: 50px !important;
+}
 
 /************************************media */
 @media (max-width: 575px) {

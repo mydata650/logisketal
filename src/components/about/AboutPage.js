@@ -49,11 +49,12 @@ const FastTrack = () => {
 const ComingSoon = () => {
     return (
         <div className="card shadow">
-            <div className="card-img-top display-1 text-bold text-center text-info" >&#9861; </div>
+            <div className="card-img-top display-1 text-bold text-center text-info" >&#8474; </div>
             <div className="card-body">
-                <h4 className="card-title"><span className="badge badge-secondary border">103 </span> Comming soon </h4>
-                <p className="card-text">Here will come a new game, which is under process.. </p>
-                <a href="/" className=""> Comming soon.. </a>
+                <h4 className="card-title"><span className="badge badge-secondary border">103 </span> Quento </h4>
+                <p className="card-text"><span className="small">Game role &#10095; mind sharpness </span><br />
+                    Add or substract digits to find a total. There are only 5 digits available and repetition is not allowed. Which means, a digit is allowed only once, however opertator can be used multiple times.  </p>
+                <a href="/quento" component={FastTrackFile} className="btn btn-success btn-block"> Play game</a>
             </div>
         </div>
     )
