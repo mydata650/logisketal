@@ -6,6 +6,8 @@ import GamesPage from "./games/bullscows/GamesPage";
 import PhoneNumber from "./games/phonenumber/PhoneNumber";
 import FastTrack from "./games/fasttrack/FastTrack";
 import PlaceMe from "./games/placeme/PlaceMe";
+import Quento from "./games/quento/Quento";
+import Extra from "./games/extra/Extra";
 import PageNotFound from "./PageNotFound";
 import Header from "./common/Header";
 import '../css/App.css';
@@ -21,6 +23,8 @@ function App() {
 			<Route path="/phonenumber" component={PhoneNumber} />
 			<Route path="/fasttrack" component={FastTrack} />
 			<Route path="/placeme" component={PlaceMe} />
+			<Route path="/quento" component={Quento} />
+			<Route path="/extra" component={Extra} />
 			<Route component={PageNotFound} />
 		</Switch>
     </div>

@@ -39,7 +39,6 @@ class FastTrack extends React.Component {
         };
         return initialState;
     }
-                //-will start new or reset new game logic
     newGame = () => {
         if (Number(this.state.status.status) === 5) {
             this.resetForNewGame();
@@ -49,7 +48,6 @@ class FastTrack extends React.Component {
         }
         this.startTimer();
     }
-              //-Runs every single second. Check if timeCounter has passed 60 timeCounter
     workingTimer = () => {
         var timeCounter = this.state.timeCounter;
         timeCounter.timeCounter = timeCounter.timeCounter + 1;
@@ -62,7 +60,6 @@ class FastTrack extends React.Component {
         }
         this.setState({ timeCounter });
     }
-             //- Only initialized few state for timer
     startTimer = () => {
         this.questionSetting();
         var startTimer = this.state.timeCounter;
@@ -74,11 +71,9 @@ class FastTrack extends React.Component {
         this.runTimer();
         this.setState({ gameStatus, gameTimer });
     }
-             //- will stop timer
     stopTimer = () => {
         clearInterval(this.state.timer.timer);
     }
-            //- Having setInverval, which calls other method every 1 seconds or based on round number..
     runTimer = () => {
         var gameReadyMsg = this.state.readyMsg;
         var gameDisabled = this.state.disabled;
@@ -112,7 +107,6 @@ class FastTrack extends React.Component {
             document.getElementById("textID0").focus();
         }
     }
-            //-Getting basic arithmetic questions and saving them into state
     questionSetting = () => {
         var operators = [10];   var numes = [10];       var denumes = [10];
         for (var i = 0; i < 10; i++) {
@@ -144,7 +138,6 @@ class FastTrack extends React.Component {
         gameNumbers.denomes = denumes;
         gameNumbers.nomues = numes;
     }
-            //-timeCounter is like second and player has to answer 10 question in 60 timeCounter, but it answer is wrong, then 8 timeCounter will increase but correct will reduce 2
     updateTimeCounter = (result) => {
         //-wrong question will 8 seconds and right question will earn 2 seconds
         var gameTimeCounter = this.state.timeCounter;
@@ -152,7 +145,6 @@ class FastTrack extends React.Component {
         else if (Number(result) === 2) { gameTimeCounter.timeCounter = gameTimeCounter.timeCounter + 8; }
         this.setState({ gameTimeCounter });
     }
-         //- Either timeCounter > 59 or QuesnotNo > 9 , then Stop the timer
     isEndOfGame = () => {
          var result = false;
         if (this.state.questions.questionNo > 9 || this.state.timeCounter.timeCounter > 59) {
@@ -161,17 +153,14 @@ class FastTrack extends React.Component {
         }
         return result;
     }
-        //-As soon as, pleyer will solve all question, will get extra points
     calculateRemainTime = () => {
         if (this.state.timeCounter.timeCounter < 61) { this.updateScore(0, 0, 60 - this.state.timeCounter.timeCounter, 0,  0); }
     }
-        //- Helping method
     resetStatus = (value) => {
         var gameStatus = this.state.status;
         gameStatus.status = value;
         this.setState({ gameStatus });
     }
-        //- helping method
     updateScore = (correctAnswer, wrongAnswer, score, resultStatus, questionIncrement) => {
         var gameQuestions = this.state.questions;
         gameQuestions.correctAnswer = gameQuestions.correctAnswer + correctAnswer;
@@ -181,7 +170,6 @@ class FastTrack extends React.Component {
         gameQuestions.score = gameQuestions.score + score;
         this.setState({ gameQuestions });
     }
-        //- reseting whole state for new game
     resetForNewGame = () => {
         var r = this.state.round;
         var q = this.state.questions;
@@ -205,7 +193,6 @@ class FastTrack extends React.Component {
             document.getElementById(ip[i]).value = "";
         }
     }
-        //- reseting whole state for new game
     resetForNextRound = () => {
         var r = this.state.round;
         var q = this.state.questions;
@@ -229,7 +216,6 @@ class FastTrack extends React.Component {
             document.getElementById(ip[i]).value = "";
         }
     }
-        //-set state, so input fields becomes disabled. It also decide about victory or defeat of the game
     disabledInputs = () => {
         var gameDisabled = this.state.disabled;
         gameDisabled.disabled = 0;
@@ -237,7 +223,6 @@ class FastTrack extends React.Component {
         if (this.state.timeCounter.timeCounter < 61 && this.state.questions.questionNo > 9) { errorMsg(8); this.resetStatus(2); }
         else { errorMsg(7); this.resetStatus(5); }
     }
-        //-Checking entere value in input text field
     checkEnteredValue = (value) => {
         var gameQuestions = this.state.questions;
         var gameNumbers = this.state.numbers;
@@ -262,7 +247,6 @@ class FastTrack extends React.Component {
             document.getElementById(tempID).focus();
         }
     }
-        //-Check entered valued with 'Enter key'
     enterPressed = (e) => {
         if (e.key == 'Enter') {
             { this.checkEnteredValue(); }
@@ -274,7 +258,7 @@ class FastTrack extends React.Component {
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-md-6 border">
-                        <NewGameButtonRow status={this.state.status.status} fullState={this.state} /> <hr />
+                        <NewGameButtonRow status={this.state.status.status}  /> <hr />
                         <TimerShowRow timeCounter={this.state.timeCounter.timeCounter} /> <hr />
                         <ResultShowRow result={this.state.questions} /><hr />
                         <ResponseMsgShowRow /> <hr />
@@ -291,8 +275,8 @@ class FastTrack extends React.Component {
 const NewGameButtonRow = (props) => {
     return (
         <div className="row headPad">
-            <div className="col-4"><button type="button" onClick={window.fastTrackMainClass.newGame} className={Number(props.status) === 2 ? "btn btn-success btn-sm mt-1" : "btn btn-warning btn-sm mt-1"} disabled={Number(props.status) === 2 ? false : true}  >&#10140;  Next round </button> </div>
-            <div className="col-4 tempFontPrincess py-1">&#9876; Fact-Track arithmetic  </div>
+            <div className="col-4"><button type="button" onClick={window.fastTrackMainClass.newGame} className={Number(props.status) === 2 ? "btn btn-success btn-sm mt-1" : "btn btn-warning btn-sm mt-1"} disabled={Number(props.status) === 2 ? false : true}  >&#10140;  Next </button> </div>
+            <div className="col-4 tempFontOpenSans  py-1">&#9876; Fact-Track   </div>
             <div className="col-4 noPadding text-right"><button type="button" onClick={window.fastTrackMainClass.newGame} className={Number(props.status) === 0 || Number(props.status) === 5 ? "btn btn-success btn-sm mt-1" : "btn btn-warning btn-sm mt-1"} disabled={Number(props.status) === 0 || Number(props.status) === 5 ? false : true}  >&#9760;  New game </button> </div>
         </div>
     );

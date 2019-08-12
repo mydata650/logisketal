@@ -234,43 +234,43 @@ const QuestionsShowRow = (props) => {
         <aside>
             <div className="row">
                 <div className="col-1"> </div>
-                <div className="col-2"><input type="number" id="textIR4" className="form-control padd2  text-center bg-info text-white" value={props.numbers.results[6]} disabled /> </div>
-                <div className="col-2"><input type="number" id="textIR3" className="form-control padd2  text-center bg-info text-white" value={props.numbers.results[3]} disabled /> </div>
-                <div className="col-2"><input type="number" id="textIR2" className="form-control padd2  text-center bg-info text-white" value={props.numbers.results[4]}  disabled /> </div>
-                <div className="col-2"><input type="number" id="textIR1" className="form-control  padd2  text-center bg-info text-white" value={props.numbers.results[5]} disabled /> </div>
-                <div className="col-2"><input type="number" id="textIR0" className="form-control padd2  text-center bg-info text-white" value={props.numbers.results[7]}  disabled /> </div>
+                <div className="col-2"><input type="number" id="textIR4" className="form-control padd2  text-center  text-danger" value={props.numbers.results[6]} disabled /> </div>
+                <div className="col-2"><input type="number" id="textIR3" className="form-control padd2  text-center  text-danger" value={props.numbers.results[3]} disabled /> </div>
+                <div className="col-2"><input type="number" id="textIR2" className="form-control padd2  text-center  text-danger" value={props.numbers.results[4]}  disabled /> </div>
+                <div className="col-2"><input type="number" id="textIR1" className="form-control  padd2  text-center  text-danger" value={props.numbers.results[5]} disabled /> </div>
+                <div className="col-2"><input type="number" id="textIR0" className="form-control padd2  text-center  text-danger" value={props.numbers.results[7]}  disabled /> </div>
                 <div className="col-1"> </div>
             </div>
 
             <div className="row pt-4">
                 <div className="col-1"> </div>
-                <div className="col-2"><input type="number" id="textIR5" className="form-control padd2 text-center  bg-info text-white" value={props.numbers.results[0]} disabled /> </div>
+                <div className="col-2"><input type="number" id="textIR5" className="form-control padd2 text-center text-danger" value={props.numbers.results[0]} disabled /> </div>
                 <div className="col-2">
                     <span id="testDiv" className="" tabIndex="0"  ></span>
-                    <input type="number" id="textID0" className=" form-control inputFont20" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID0")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 0 || Number(props.numbers.noTwoShow) === 0 || Number(props.status) === 2 ? true : false} />
+                    <input type="number" id="textID0" className=" form-control inputFont20 text-center" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID0")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 0 || Number(props.numbers.noTwoShow) === 0 || Number(props.status) === 2 ? true : false} />
                 </div>
-                <div className="col-2"><input type="number" id="textID1" className="form-control inputFont20" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID1")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 1 || Number(props.numbers.noTwoShow) === 1 || Number(props.status) === 2 ? true : false} /> </div>
-                <div className="col-2"><input type="number" id="textID2" className="form-control inputFont20" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID2")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 2 || Number(props.numbers.noTwoShow) === 2 || Number(props.status) === 2? true : false}/> </div>
+                <div className="col-2"><input type="number" id="textID1" className="form-control inputFont20 text-center" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID1")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 1 || Number(props.numbers.noTwoShow) === 1 || Number(props.status) === 2 ? true : false} /> </div>
+                <div className="col-2"><input type="number" id="textID2" className="form-control inputFont20 text-center" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID2")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 2 || Number(props.numbers.noTwoShow) === 2 || Number(props.status) === 2? true : false}/> </div>
                 <div className="col-2"> </div>
                 <div className="col-1"> </div>
             </div>
 
             <div className="row pt-4">
                 <div className="col-1"> </div>
-                <div className="col-2"><input type="number" id="textIR6" className="form-control padd2 text-center  bg-info text-white" value={props.numbers.results[1]} disabled /> </div>
-                <div className="col-2"><input type="number" id="textID3" className="form-control inputFont20" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID3")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 3 || Number(props.numbers.noTwoShow) === 3 || Number(props.status) === 2? true : false}/> </div>
-                <div className="col-2"><input type="number" id="textID4" className="form-control inputFont20" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID4")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 4 || Number(props.numbers.noTwoShow) === 4|| Number(props.status) === 2? true : false}/> </div>
-                <div className="col-2"><input type="number" id="textID5" className="form-control inputFont20" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID5")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 5 || Number(props.numbers.noTwoShow) === 5 || Number(props.status) === 2? true : false}/> </div>
+                <div className="col-2"><input type="number" id="textIR6" className="form-control padd2 text-center  text-danger" value={props.numbers.results[1]} disabled /> </div>
+                <div className="col-2"><input type="number" id="textID3" className="form-control inputFont20 text-center" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID3")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 3 || Number(props.numbers.noTwoShow) === 3 || Number(props.status) === 2? true : false}/> </div>
+                <div className="col-2"><input type="number" id="textID4" className="form-control inputFont20 text-center" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID4")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 4 || Number(props.numbers.noTwoShow) === 4|| Number(props.status) === 2? true : false}/> </div>
+                <div className="col-2"><input type="number" id="textID5" className="form-control inputFont20 text-center" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID5")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 5 || Number(props.numbers.noTwoShow) === 5 || Number(props.status) === 2? true : false}/> </div>
                 <div className="col-2"> </div>
                 <div className="col-1"> </div>
             </div>
 
             <div className="row pt-4">
                 <div className="col-1"> </div>
-                <div className="col-2"><input type="number" id="textIR7" className="form-control padd2  text-center bg-info text-white" value={props.numbers.results[2]} disabled /> </div>
-                <div className="col-2"><input type="number" id="textID6" className="form-control inputFont20" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID6")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 6 || Number(props.numbers.noTwoShow) === 6 || Number(props.status) === 2? true : false}/> </div>
-                <div className="col-2"><input type="number" id="textID7" className="form-control inputFont20" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID7")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 7 || Number(props.numbers.noTwoShow) === 7 || Number(props.status) === 2? true : false}/> </div>
-                <div className="col-2"><input type="number" id="textID8" className="form-control inputFont20" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID8")} onKeyDown={window.fastTrackMainClass.enterPressedLast} disabled={Number(props.numbers.noOneShow) === 8 || Number(props.numbers.noTwoShow) === 8 || Number(props.status) === 2? true : false}/> </div>
+                <div className="col-2"><input type="number" id="textIR7" className="form-control padd2  text-center text-danger" value={props.numbers.results[2]} disabled /> </div>
+                <div className="col-2"><input type="number" id="textID6" className="form-control inputFont20 text-center" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID6")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 6 || Number(props.numbers.noTwoShow) === 6 || Number(props.status) === 2? true : false}/> </div>
+                <div className="col-2"><input type="number" id="textID7" className="form-control inputFont20 text-center" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID7")} onKeyDown={window.fastTrackMainClass.enterPressed} disabled={Number(props.numbers.noOneShow) === 7 || Number(props.numbers.noTwoShow) === 7 || Number(props.status) === 2? true : false}/> </div>
+                <div className="col-2"><input type="number" id="textID8" className="form-control inputFont20 text-center" onChange={e => window.fastTrackMainClass.handleClickDigit(e.target.value, "textID8")} onKeyDown={window.fastTrackMainClass.enterPressedLast} disabled={Number(props.numbers.noOneShow) === 8 || Number(props.numbers.noTwoShow) === 8 || Number(props.status) === 2? true : false}/> </div>
                 <div className="col-2"> </div>
                 <div className="col-1"> </div>
             </div><br/>
