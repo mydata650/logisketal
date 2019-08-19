@@ -21,12 +21,17 @@ const AboutPage = () => {
 
 const GameNumbers = () => {
     return (
-        <div className="row pl-4 border-bottom">
-            <div className="col-xs-1 text-right numberOne h2"> </div>
-            <div className="col-xs-1 text-left  numberTwo h2">&#10106;</div>
-            <div className="col-xs-2 h2 tempFontPrincess pl-1 text-info"> games </div>
-            <div className="col-xs-8"> </div>
-        </div>
+        <aside>
+            <div className="row pl-4 ">
+                <div className="col-xs-1 text-right numberOne h2"> </div>
+                <div className="col-xs-1 text-left  numberTwo h2">&#10106;</div>
+                <div className="col-xs-4  pl-1 text-info"><span className="h2 tempFontPrincess"> games</span> <span className=" tempFontOpenSans small">(over 10 years)</span></div>
+                <div className="col-xs-6"></div>
+            </div>
+            <div className="row border-bottom px-2">
+                <div className="col-xs-12 small">The page contains list of games developed for players over 10 years. All the games involve simple logical or arithmatic calculations. </div>
+            </div>
+        </aside>
     )
 }
 

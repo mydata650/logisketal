@@ -7,6 +7,7 @@ class GamesPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.getInitialState();
+        window.gamesPageMainClass = this;
     }
    state = {};
 
@@ -41,33 +42,18 @@ class GamesPage extends React.Component {
         };
         return initialState;
     }
+  
+    updateHiddenNo = (orignalArray) => {
+        var tempOrignal = this.state.Orignal;                                                                               //
+        tempOrignal.digits = orignalArray;
+        this.setState({ tempOrignal }); 
+    }
 
-    handleCheckClick = event => {
-        var cowBull = this.state.bullsCows;
-        // if (this.state.status.status === 1 || this.state.status.status === 2 ) { return false;}                   //-if game has finished somehow
-        if (Number(this.state.status.status) === 2) { errorMsg(6); return false; }                   //-if game has finished somehow
-        if (Number(this.state.status.status) === 0) { this.updateStatus(1); } 
-        try {   if (isAllDigitsAreProper(this.state.cowBull.digits) === false) { return false; } } catch (error) {
-            errorMsg(3);
-            return false;
-        }
-       // if (isAllDigitsAreProper(digitsArray) === false) { return false; }                         
-        var tempStage = this.state.bullsCows.stage;
-        var orignalArray = [];
-        if (tempStage === 0) {                                                                                                           //-if game is starting
-            orignalArray = getRandomNo();                                                                                       //-get random number
-            var tempOrignal = this.state.Orignal;                                                                               //
-            tempOrignal.digits = orignalArray;
-            this.setState({ tempOrignal });                                                                                        //-update state with random/orignal number
-        }
-        else {
-            orignalArray = this.state.Orignal.digits;
-        }
+    //-upding state with entered number, number of exist and matched digits
+    updateEnteredNumber = (orignalArray, tempStage) => {
+        errorMsg(7);
         var enteredArray = this.state.cowBull.digits;
-        tempStage++;
-        var gameStatus = this.state.status;
         var numberEntered = this.state.enteredNumber;
-        
         switch (tempStage) {                                                                                                        //-:> code should be improve but not getting idea how to do that
             case 1:
                 numberEntered.numbers[0] = getNumberFromArray(enteredArray);
@@ -105,30 +91,52 @@ class GamesPage extends React.Component {
                 numberEntered.exists[6] = digitsExist(orignalArray, enteredArray);
                 numberEntered.matches[6] = digitsMatch(orignalArray, enteredArray);
                 break;
-			default:;
+            default: ;
         }
         this.setState(numberEntered);
+    }
+
+    updateCowBulls = (tempStage) => {
+        var cowBull = this.state.bullsCows;
         cowBull = this.state.bullsCows;
         cowBull.stage = tempStage;
         cowBull.digits = [-1, -2, -3, -4];
         this.setState({ cowBull });
-
-        if (digitsMatch(orignalArray, enteredArray) === 4) {                    
-            gameStatus = this.state.status;
-            gameStatus.status = 1;
-            //this.setState({ gameStatus });
+    }
+    
+    handleCheckClick = event => {
+        if (Number(this.state.status.status) === 2) { errorMsg(6); return false; }                   //-if game has finished somehow
+        if (Number(this.state.status.status) === 0) { this.updateStatus(1); }                           //-Game has started
+        try {
+            if (isAllDigitsAreProper(this.state.cowBull.digits) === false) { return false; }        //-checking if all digits are not entered
+        }
+        catch (error) {
+            errorMsg(3);        return false;
+        }
+        var tempStage = this.state.bullsCows.stage;
+        var orignalArray = [];
+        if (tempStage === 0) {                                                                                                           //-if game is starting
+            orignalArray = getRandomNo();                                                                                       //-get random number
+            this.updateHiddenNo(orignalArray);                                                                                //- Assigning random number with hidden number
+        }
+        else {
+            orignalArray = this.state.Orignal.digits;
+        }
+        tempStage++;
+        this.updateEnteredNumber(orignalArray, tempStage);
+        var enteredArray = this.state.cowBull.digits;
+        this.updateCowBulls(tempStage);                 
+        if (digitsMatch(orignalArray, enteredArray) === 4) {                                                                                         //-Game finished and player has found the number
+            this.updateStatus(2);
             errorMsg(4);
             this.stopTimer();
         }
-
-        if (tempStage === 7 && gameStatus !== 1 && digitsMatch(orignalArray, enteredArray) !== 4) {
-            gameStatus.status = 2;
+        if (tempStage === 7  && digitsMatch(orignalArray, enteredArray) !== 4) {                                                    //- Game finished but player couldnt find the number
             errorMsg(5);
-            this.setState({ gameStatus });
+            this.updateStatus(2);
             this.stopTimer();
             return false;
         }
-        this.setState({ gameStatus });
         setEmptyDigitFields();
     } 
 
@@ -182,7 +190,7 @@ class GamesPage extends React.Component {
         if (Number(this.state.status.status) === 2) {
             setEmptyDigitFields();
             this.setState(this.getInitialState());
-            errorMsg(6);
+            errorMsg(7);
         }
         else {
             this.updateStatus(1);
@@ -213,95 +221,112 @@ class GamesPage extends React.Component {
             document.getElementById("focusguard-1").focus();
         }
     }
-
-    NewGameButtonRow = () => {
-        return (
-            <div className="row headPad">
-                <div className="col-3"><button type="button" className="btn btn-info btn-sm mt-1" onClick={this.handleCheckClick} id="checkButton" >Check </button> </div>
-                <div className="col-7"><span className="tempFontOpenSans pt-3 h-100"> &#8506; BullsCows </span></div>
-                <div className="col-2 noPadding"><button type="button" onClick={this.newGame} className="btn btn-info btn-sm mt-1">Reset </button> </div>
-            </div>
-        );
-    }
-
+    
     render() {
         return (
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-md-5 border">
-                        <div className="row headPad">
-                            <div className="col-3"><button type="button" className="btn btn-info btn-sm mt-1" onClick={this.handleCheckClick} id="checkButton" >Check </button> </div>
-                            <div className="col-7"><span className="tempFontOpenSans pt-3 h-100"> &#8506; BullsCows  </span></div>
-                            <div className="col-2 noPadding"><button type="button" onClick={this.newGame} className="btn btn-success btn-sm mt-1">New </button> </div>
-                        </div>                         <hr />
-                        <div className="row">
-                            <div className="col-4">Enter No.</div>
-                            <div className="focusguard" id="focusguard-1" tabIndex="1"></div>
-                            <div className="col-2 noPadding"><input type="number" className="form-control" autoFocus min="0" max="9" step="1" id="digit1" tabIndex="2" onKeyDown={this.enterPressed} onChange={e => this.handleClickDigit(e.target.value, "digit1")} />  </div>       
-                            <div className="col-2 noPadding"><input type="number" className="form-control" min="0" max="9" step="1" id="digit2" tabIndex="3" onKeyDown={this.enterPressed} onChange={e => this.handleClickDigit(e.target.value, "digit2")}/></div>       
-                            <div className="col-2 noPadding"><input type="number" className="form-control" min="0" max="9" step="1" id="digit3" tabIndex="4" onKeyDown={this.enterPressed} onChange={e => this.handleClickDigit(e.target.value, "digit3")}  /></div>       
-                            <div className="col-2 noPadding"><input type="number" className="form-control" min="0" max="9" step="1" id="digit4" tabIndex="5" onKeyDown={this.enterPressedLast} onChange={e => this.handleClickDigit(e.target.value, "digit4")} /></div>       
-                           </div>                         <hr />
-                        <div className="row">
-                            <div className="col-12"><span className="small">Msg: </span> <span id="msgShow" className={this.state.status.status === 1 ? "small text-success" : (this.state.status.status === 2 ? "small text-danger" : "small text-info")}> </span></div>
-                        </div>                         <hr />
-                        <div className="row">
-                            <div className="col-6">{this.state.Timer.hour} : {this.state.Timer.minut} : {this.state.Timer.second} </div>
-                            <div className="col-6"><span className="small">Hidden No.  </span>
-                                <span className={this.state.status.status === 0 || this.state.status.status === 1 ? "text-warning  h5" : "text-success h3"} >
-                                    {this.state.status.status === 2 ? getNumberFromArray(this.state.Orignal.digits) : "????"}
-                                </span>
-                            </div>
-                       </div>                         <hr />
-                        <div className="row">
-                            <div className="col-6"> <u>Guessed  </u></div>
-                            <div className="col-3"> <u>Exist</u></div>  
-                            <div className="col-3"> <u>Match</u> </div>
-                        </div>
-                        <div className="row  my-2">
-                            <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess-1" value={this.state.bullsCows.stage > 0 ? (this.state.enteredNumber.numbers[0]) : ''} disabled /></div>
-                            <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40"   id="digit1Exis" value={this.state.bullsCows.stage > 0 ? (this.state.enteredNumber.exists[0]) : ''} disabled /></div>
-                            <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40"  id="digit1Match" value={this.state.bullsCows.stage > 0 ? (this.state.enteredNumber.matches[0]) : ''} disabled /> </div>
-                        </div>
-                        <div className="row  my-2">
-                            <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess2" value={this.state.bullsCows.stage > 1 ? (this.state.enteredNumber.numbers[1]) : ''} disabled /></div>
-                            <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40"  id="digit1Exis" value={this.state.bullsCows.stage > 1 ? (this.state.enteredNumber.exists[1]) : ''} disabled/></div>
-                            <div className="col-3"> <input type="test" className="col-12 form-control  inputFont40"  id="digit1Match" value={this.state.bullsCows.stage > 1 ? (this.state.enteredNumber.matches[1]) : ''} disabled/> </div>
-                        </div>
-                        <div className="row  my-2">
-                            <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess3" value={this.state.bullsCows.stage > 2 ? (this.state.enteredNumber.numbers[2]) : ''} disabled /></div>
-                            <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40"   id="digit1Exis" value={this.state.bullsCows.stage > 2 ? (this.state.enteredNumber.exists[2]) : ''} disabled/></div>
-                            <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={this.state.bullsCows.stage > 2 ? (this.state.enteredNumber.matches[2]) : ''} disabled/> </div>
-                        </div>
-                        <div className="row  my-2">
-                            <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess4" value={this.state.bullsCows.stage > 3 ? (this.state.enteredNumber.numbers[3]) : ''} disabled/></div>
-                            <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40"  id="digit1Exis" value={this.state.bullsCows.stage > 3 ? (this.state.enteredNumber.exists[3]) : ''} disabled /></div>
-                            <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40"  id="digit1Match" value={this.state.bullsCows.stage > 3 ? (this.state.enteredNumber.matches[3]) : ''} disabled/> </div>
-                        </div>
-                        <div className="row  my-2">
-                            <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess5" value={this.state.bullsCows.stage > 4 ? (this.state.enteredNumber.numbers[4]) : ''} disabled/></div>
-                            <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40"  id="digit1Exis" value={this.state.bullsCows.stage > 4 ? (this.state.enteredNumber.exists[4]) : ''} disabled /></div>
-                            <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40"  id="digit1Match" value={this.state.bullsCows.stage > 4 ? (this.state.enteredNumber.matches[4]) : ''} disabled/> </div>
-                        </div>
-                        <div className="row  my-2">
-                            <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess6" value={this.state.bullsCows.stage > 5 ? (this.state.enteredNumber.numbers[5]) : ''} disabled /></div>
-                            <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40"  id="digit1Exis" value={this.state.bullsCows.stage > 5 ? (this.state.enteredNumber.exists[5]) : ''} disabled/></div>
-                            <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40"  id="digit1Match" value={this.state.bullsCows.stage > 5 ? (this.state.enteredNumber.matches[5]) : ''} disabled /> </div>
-                        </div>
-                        <div className="row  my-2">
-                            <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess7" value={this.state.bullsCows.stage > 6 ? (this.state.enteredNumber.numbers[6]) : ''} disabled /></div>
-                            <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40"  id="digit1Exis" value={this.state.bullsCows.stage > 6 ? (this.state.enteredNumber.exists[6]) : ''} disabled/></div>
-                            <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40"  id="digit1Match" value={this.state.bullsCows.stage > 6 ? (this.state.enteredNumber.matches[6]) : ''} disabled/> </div>
-                        </div>
+                        <NewGameRowShow  />         <hr />
+                        <UserNumberEnterRowShow  /><hr />
+                        <MsgRowShow status={this.state.status.status} /><hr />
+                        <TimerHiddenNoRowShow status={this.state.status.status} hour={this.state.Timer.hour} minut={this.state.Timer.minut} second={this.state.Timer.second} digits={this.state.Orignal.digits} />  <hr />
+                        <ResultsTextBoxRowShow stage={this.state.bullsCows.stage}  enteredNumber={this.state.enteredNumber}   />
                     </div>
                     <GameInfoRowShow />
                 </div>
            </div>
         );
     }
-
 }
 
+const ResultsTextBoxRowShow = (props) => {
+    return (
+        <div>
+            <div className="row">
+                <div className="col-6"> <u>Guessed  </u></div>
+                <div className="col-3"> <u>Exist</u></div>
+                <div className="col-3"> <u>Match</u> </div>
+            </div>
+            <div className="row  my-2">
+                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess-1" value={props.stage > 0 ? (props.enteredNumber.numbers[0]) : ''} disabled /></div>
+                <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40" id="digit1Exis" value={props.stage > 0 ? (props.enteredNumber.exists[0]) : ''} disabled /></div>
+                <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40" id="digit1Match" value={props.stage > 0 ? (props.enteredNumber.matches[0]) : ''} disabled /> </div>
+            </div>
+            <div className="row  my-2">
+                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess2" value={props.stage > 1 ? (props.enteredNumber.numbers[1]) : ''} disabled /></div>
+                <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40" id="digit1Exis" value={props.stage > 1 ? (props.enteredNumber.exists[1]) : ''} disabled /></div>
+                <div className="col-3"> <input type="test" className="col-12 form-control  inputFont40" id="digit1Match" value={props.stage > 1 ? (props.enteredNumber.matches[1]) : ''} disabled /> </div>
+            </div>
+            <div className="row  my-2">
+                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess3" value={props.stage > 2 ? (props.enteredNumber.numbers[2]) : ''} disabled /></div>
+                <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40" id="digit1Exis" value={props.stage > 2 ? (props.enteredNumber.exists[2]) : ''} disabled /></div>
+                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={props.stage > 2 ? (props.enteredNumber.matches[2]) : ''} disabled /> </div>
+            </div>
+            <div className="row  my-2">
+                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess4" value={props.stage > 3 ? (props.enteredNumber.numbers[3]) : ''} disabled /></div>
+                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Exis" value={props.stage > 3 ? (props.enteredNumber.exists[3]) : ''} disabled /></div>
+                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={props.stage > 3 ? (props.enteredNumber.matches[3]) : ''} disabled /> </div>
+            </div>
+            <div className="row  my-2">
+                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess5" value={props.stage > 4 ? (props.enteredNumber.numbers[4]) : ''} disabled /></div>
+                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Exis" value={props.stage > 4 ? (props.enteredNumber.exists[4]) : ''} disabled /></div>
+                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={props.stage > 4 ? (props.enteredNumber.matches[4]) : ''} disabled /> </div>
+            </div>
+            <div className="row  my-2">
+                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess6" value={props.stage > 5 ? (props.enteredNumber.numbers[5]) : ''} disabled /></div>
+                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Exis" value={props.stage > 5 ? (props.enteredNumber.exists[5]) : ''} disabled /></div>
+                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={props.stage > 5 ? (props.enteredNumber.matches[5]) : ''} disabled /> </div>
+            </div>
+            <div className="row  my-2">
+                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess7" value={props.stage > 6 ? (props.enteredNumber.numbers[6]) : ''} disabled /></div>
+                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Exis" value={props.stage > 6 ? (props.enteredNumber.exists[6]) : ''} disabled /></div>
+                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={props.stage > 6 ? (props.enteredNumber.matches[6]) : ''} disabled /> </div>
+            </div>
+        </div>
+    );
+}
+const TimerHiddenNoRowShow = (props) => {
+    return (
+        <div className="row">
+            <div className="col-6">{props.hour} : {props.minut} : {props.second} </div>
+            <div className="col-6"><span className="small">Hidden No.  </span>
+                <span className={props.status === 0 || props.status === 1 ? "text-warning  h5" : "text-success h3"} >
+                    {props.status === 2 ? getNumberFromArray(props.digits) : "????"}
+                </span>
+            </div>
+        </div>
+    );
+}
+const MsgRowShow = (props) => {
+    return (
+        <div className="row">
+            <div className="col-12"><span className="small">Msg: </span> <span id="msgShow" className={props.status === 1 ? "small text-success" : (props.status === 2 ? "small text-danger" : "small text-info")}> </span></div>
+        </div> 
+    );
+}
+const UserNumberEnterRowShow = (props) => {
+    return (
+        <div className="row">
+            <div className="col-4">Enter No.</div>
+            <div className="focusguard" id="focusguard-1" tabIndex="1"></div>
+            <div className="col-2 noPadding"><input type="number" className="form-control" autoFocus min="0" max="9" step="1" id="digit1" tabIndex="2" onKeyDown={window.gamesPageMainClass.enterPressed} onChange={e => window.gamesPageMainClass.handleClickDigit(e.target.value, "digit1")} />  </div>
+            <div className="col-2 noPadding"><input type="number" className="form-control" min="0" max="9" step="1" id="digit2" tabIndex="3" onKeyDown={window.gamesPageMainClass.enterPressed} onChange={e => window.gamesPageMainClass.handleClickDigit(e.target.value, "digit2")} /></div>
+            <div className="col-2 noPadding"><input type="number" className="form-control" min="0" max="9" step="1" id="digit3" tabIndex="4" onKeyDown={window.gamesPageMainClass.enterPressed} onChange={e => window.gamesPageMainClass.handleClickDigit(e.target.value, "digit3")} /></div>
+            <div className="col-2 noPadding"><input type="number" className="form-control" min="0" max="9" step="1" id="digit4" tabIndex="5" onKeyDown={window.gamesPageMainClass.enterPressedLast} onChange={e => window.gamesPageMainClass.handleClickDigit(e.target.value, "digit4")} /></div>
+        </div> 
+    );
+}
+const NewGameRowShow = (props) => {
+    return (
+        <div className="row headPad">
+            <div className="col-3"><button type="button" className="btn btn-info btn-sm mt-1" onClick={window.gamesPageMainClass.handleCheckClick} id="checkButton" >Check </button> </div>
+            <div className="col-7"><span className="tempFontOpenSans pt-3 h-100"> &#8506; BullsCows  </span></div>
+            <div className="col-2 noPadding"><button type="button" onClick={window.gamesPageMainClass.newGame} className="btn btn-success btn-sm mt-1">New </button> </div>
+        </div>  
+        
+        );
+}
 const GameInfoRowShow = () => {
     return (
         <div className="col-md-6 pl-5">
@@ -344,7 +369,6 @@ function isAllDigitsAreProper(array) {
    
     return result;
 }
-
 function errorMsg(errorCode) {
     var errors = [
         "Error-0, system error, kindly contact to administrator", 
@@ -353,11 +377,11 @@ function errorMsg(errorCode) {
         "Enter all 4 digits between [0,9], both included.",
         "Weldone: you have guessed the right number!!",
         "Unfortunately, you lost the game",
-        "Start a new game!!"
+        "Start a new game!!",
+        ""
     ]
     document.getElementById('msgShow').innerHTML = errors[errorCode];
 }
-
 function getRandomNo() {
     
     var nos = [0, -2, -3, -4];
@@ -375,7 +399,7 @@ function getRandomNo() {
     }
     return nos;
 }
-
+//-return number from array of digits, like 3,5,4,8 as 3548. toString() putting extra ',', so not helping here
 function getNumberFromArray(arry) {
     var textVal = "";
     for (var i = 0; i < arry.length; i++) {
@@ -383,7 +407,6 @@ function getNumberFromArray(arry) {
     }
     return parseInt(textVal, 10);
 }
-
 function digitsExist(orignalArray, enteredArray) {
     var existedNumber = 0;
     for (var i = 0; i < orignalArray.length; i++) {
@@ -393,7 +416,6 @@ function digitsExist(orignalArray, enteredArray) {
     }
     return existedNumber;
 }
-
 function digitsMatch(orignalArray, enteredArray) {
     var matchedNumbers = 0;
     for (var i = 0; i < 4; i++) {
@@ -403,7 +425,6 @@ function digitsMatch(orignalArray, enteredArray) {
     }
     return matchedNumbers;
 }
-
 function setEmptyDigitFields() {
     document.getElementById("digit1").value = "";
     document.getElementById("digit2").value = "";
@@ -411,7 +432,6 @@ function setEmptyDigitFields() {
     document.getElementById("digit4").value = "";
     document.getElementById("digit1").focus();
 }
-
 function isDigitUnique(value, savedAray) {
     var result = true;
     for (var i = 0; i < 4; i++) {
@@ -419,11 +439,9 @@ function isDigitUnique(value, savedAray) {
     }
     return result;
 }
-
 function resetField(id) {
     document.getElementById(id).value = "";
     document.getElementById(id).focus();
     errorMsg(1)
 }
-
 export default GamesPage;
