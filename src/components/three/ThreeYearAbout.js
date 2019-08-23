@@ -34,7 +34,7 @@ const Colors3 = () => {
             <div className="card-body">
                 <h4 className="card-title"><span className="badge badge-secondary border">101 </span> Farver 3Y </h4>
                 <p className="card-text"><span className="small">Spil rolle &#10095; Grundlæggende farveidentifikation for et barn under 3 år</span><br /></p>
-                <a href="/colors3" component={Colors3} className="btn btn-success btn-block"> Spille </a>
+                <a href="/colors3"  className="btn btn-success btn-block"> Spille </a>
             </div>
         </div>
     )
