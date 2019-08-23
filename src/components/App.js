@@ -11,7 +11,9 @@ import Extra from "./games/extra/Extra";
 
 import Ten from "./ten/TenYearAbout";
 import Seven from "./seven/SevenYearAbout";
+
 import Five from "./five/FiveYearAbout";
+import Shapes5 from "./five/shapes5/Shapes5";
 
 import Three from "./three/ThreeYearAbout";
 import Colors3 from "./three/colors3/Colors3";
@@ -37,6 +39,9 @@ function App() {
               <Route path="/Colors3" component={Colors3} />
 
               <Route path="/five" component={Five} />
+              <Route path="/shapes5" component={Shapes5} />
+
+
               <Route path="/seven" component={Seven} />
               <Route path="/ten" component={Ten} />
 
