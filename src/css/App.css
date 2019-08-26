@@ -134,6 +134,12 @@ hr {
 
 .font72{font-size: 200px ;}
 
+.learningBox {
+    height: 260px !important;
+    position: relative !important;
+    border-bottom: 1px solid grey;
+    padding-top: 10px;
+}
 
 /**Background colors**/
 .bga1 {background-color: #56642A;}

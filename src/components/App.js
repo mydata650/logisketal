@@ -14,9 +14,11 @@ import Seven from "./seven/SevenYearAbout";
 
 import Five from "./five/FiveYearAbout";
 import Shapes5 from "./five/shapes5/Shapes5";
+import Shapes5Learn from "./five/shapes5Learn/Shapes5Learn";
 
 import Three from "./three/ThreeYearAbout";
 import Colors3 from "./three/colors3/Colors3";
+import Colors3Learn from "./three/colors3Learn/Colors3Learn";
 
 import PageNotFound from "./PageNotFound";
 import Header from "./common/Header";
@@ -37,9 +39,11 @@ function App() {
 
               <Route path="/three" component={Three} />
               <Route path="/Colors3" component={Colors3} />
+              <Route path="/colors3learn" component={Colors3Learn} />
 
               <Route path="/five" component={Five} />
               <Route path="/shapes5" component={Shapes5} />
+              <Route path="/shapes5learn" component={Shapes5Learn} />
 
 
               <Route path="/seven" component={Seven} />

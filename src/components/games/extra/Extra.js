@@ -100,6 +100,16 @@ const NamesOFShapes = () => {
     <div className="col-md-6 text-left"><label> <input type="radio" className="form-check-input" name="optradio" onClick={() => { window.colors3MainClass.updateSelectedShape(props.selectOptions[0]) }} value={props.selectOptions[0]} />{props.selectOptions[0]} </label> </div>
                     <div className="col-md-6 text-left"><label>  <input type="radio" className="form-check-input" name="optradio" onClick={() => { window.colors3MainClass.updateSelectedShape(props.selectOptions[1]) }} value={props.selectOptions[1]} />{props.selectOptions[1]} </label> </div>
 
+
+
+
+
+                <ReactRough height="200" width="240" className="border">
+                    <Polygon points={[[[10, 1], [30, 60], [0, 60], [6, 105], [38, 180], [100, 180], [165, 180], [180, 105], [200, 5], [125, 60]]]} fill="rgba(255,113,13, 0.3)" />
+                </ReactRough><br />
+
+
+
 */
 }
 

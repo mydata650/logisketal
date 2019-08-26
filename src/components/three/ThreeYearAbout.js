@@ -33,7 +33,10 @@ const Colors3 = () => {
             <div className="card-img-top display-1 text-bold text-center text-danger" >&#9731;</div>
             <div className="card-body">
                 <h4 className="card-title"><span className="badge badge-secondary border">101 </span> Farver 3Y </h4>
-                <p className="card-text"><span className="small">Spil rolle &#10095; Grundlæggende farveidentifikation for et barn under 3 år</span><br /></p>
+                <p className="card-text"><span className="small">Spil rolle &#10095; Grundlæggende farveidentifikation for et barn under 3 år</span><br />
+                    Før du spiller spillet, skal du kigge på listen over alle tilgængelige farver, <a href="/colors3learn" className=""> klik her </a>
+
+                </p>
                 <a href="/colors3"  className="btn btn-success btn-block"> Spille </a>
             </div>
         </div>
