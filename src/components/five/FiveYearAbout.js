@@ -33,7 +33,9 @@ const Shapes5 = () => {
             <div className="card-img-top display-1 text-bold text-center text-danger" >&#8526;</div>
             <div className="card-body">
                 <h4 className="card-title"><span className="badge badge-secondary border">101 </span> Figurer 5Y </h4>
-                <p className="card-text"><span className="small">Spil rolle &#10095; Grundlæggende figureridentifikation for et barn under 5 år</span><br /></p>
+                <p className="card-text"><span className="small">Spil rolle &#10095; Grundlæggende figureridentifikation for et barn under 5 år</span><br />
+                    Før du spiller spillet, skal du kigge på listen over alle tilgængelige figurer, <a href="/shapes5learn" className=""> klik her </a>
+                </p>
                 <a href="/shapes5" className="btn btn-success btn-block"> Spille </a>
             </div>
         </div>

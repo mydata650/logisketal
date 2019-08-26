@@ -48,7 +48,6 @@ class Shapes5 extends React.Component {
         };
         return initialState;
     }
-
     newGame = () => {
         if (Number(this.state.status.status) === 2) { this.resetGame(); }
         var tempIndex = getRandomNo(this.state.shapes.shapes);
@@ -128,7 +127,6 @@ class Shapes5 extends React.Component {
         document.querySelector('input[name="optradio"]:checked').checked = false;
         return result;
     } 
-
     updateCorrect = () => {
         if (!this.radioButtonValues()) { return false; }  
         
@@ -149,8 +147,7 @@ class Shapes5 extends React.Component {
         tempLanguage.language = value;
         this.setState({ tempLanguage });
     }
-
-
+    
     checkAnswer = (value) => {
         var result = false;
         if (value === this.state.currentShape.currentShape) { result = true; }
@@ -218,8 +215,8 @@ const LanguageSetting = (props) => {
     return (
         <div className="row ">
             <div className="col-md-6 col-sm-12 col-xs-12 text-right">
-                <img src={UK} className="img-fluid   " alt="Responsive image" width={25} onClick={e => window.colors3MainClass.updateLanguage(0)} /> &nbsp;
-                <img src={DA2} className="img-fluid " alt="Responsive image" width={25} onClick={e => window.colors3MainClass.updateLanguage(1)}/>
+                <img src={UK} className="img-fluid   " alt="Responsive image" width={25} style={{ "cursor": "pointer" }} onClick={e => window.colors3MainClass.updateLanguage(0)} /> &nbsp;
+                < img src={DA2} className="img-fluid " alt="Responsive image" width={25} style={{"cursor" : "pointer"}} onClick={e => window.colors3MainClass.updateLanguage(1)}/>
             </div>
             <div className="col-md-6 col-sm-12 col-xs-12 text-right"></div>
         </div>

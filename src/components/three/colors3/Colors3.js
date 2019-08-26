@@ -210,7 +210,7 @@ const QuestionsShowRow = (props) => {
                         <div className="col-10 text-left noPadding">
                             {Number(props.status) === 1 ?
                                 <span><ReactRough width={220} height={200} >
-                                    <Rectangle points={[10, 10, 200, 160]} fill={props.currentColor} fillWeight={3}  />
+                                    <Rectangle points={[10, 10, 200, 160]} fill={props.currentColor} fillWeight={4}  />
                                 </ReactRough></span> 
                                 :
                                 <span className="display-1">&#9731; </span>
