@@ -1,68 +1,3 @@
-import React from "react";
-import GamesPage from "../games/bullscows/GamesPage";
-import PhoneNumber from "../games/phonenumber/PhoneNumber";
-import FastTrackFile from "../games/fasttrack/FastTrack";
-
-const Extra2 = () => {
-    return (
-        <div className="container pt-4 border">
-            <GameNumbers />
-            <div className="card-columns pt-4">
-                <CommingSoon />
-            </div>
-        </div>
-    );
-}
-
-const GameNumbers = () => {
-    return (
-        <aside>
-            <div className="row pl-4 ">
-                <div className="col-xs-1 text-right numberOne h2"> </div>
-                <div className="col-xs-1 text-left  numberTwo h2">&#10102;</div>
-                <div className="col-xs-4  pl-1 text-info"><span className="h2 tempFontPrincess"> games</span> <span className=" tempFontOpenSans small">(3 years)</span></div>
-                <div className="col-xs-6"></div>
-            </div>
-            <div className="row border-bottom px-2">
-                <div className="col-xs-12 small">Here will be list of games for 3 years old students.... </div>
-            </div>
-        </aside>
-    )
-}
-
-const CommingSoon = () => {
-    return (
-        <div className="card shadow">
-            <div className="card-img-top display-1 text-bold text-center text-danger" >&#9865;</div>
-            <div className="card-body">
-                <h4 className="card-title"><span className="badge badge-secondary border">101 </span> Comming soon </h4>
-                <p className="card-text"><span className="small">Game role &#10095; </span><br />
-
-                </p>
-                <a href="/"  className="btn btn-success btn-block"> Comming soon </a>
-            </div>
-        </div>
-    )
-}
-
-
-
-cons extraCode = () => {
-  
-}
-
-export default Extra2;
-
-
-
-
-
-
-
-------------------------------------
-
-
-
 import React from 'react';
 import Mango from './imgs/mango.png';
 
@@ -76,22 +11,22 @@ class Division7 extends React.Component {
     getInitialState = () => {
         const initialState =
         {
-            totalMangoes: { totalMangoes: 0 },
-            totalMangoesShow: { totalMangoesShow: 0 },
+            totalMangoes: { totalMangoes: 0 }, 
+            totalMangoesShow: { totalMangoesShow: 0 }, 
             totalPersons: { totalPersons: 0 },
             personNames: {
-                personNames: ["Maiza", "Hashim", "Ans", "Peter", "Ahmed", "Henrik", "Ali", "Tom", "Haris", "Soren"]
+                personNames: ["Maiza", "Hashim", "Ans", "Peter", "Ahmed", "Henrik", "Ali", "Tom", "Haris", "Soren" ]
             },
             personsMangoes: {
                 personsMangoes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             },
             questions: {
-                correctAnswer: 0,
+                correctAnswer: 0, 
                 wrongAnswer: 0,
                 questionNo: 0,
                 score: 0
             },
-            status: { status: 0 },
+            status: { status: 0 }, 
         };
         return initialState;
     }
@@ -112,7 +47,7 @@ class Division7 extends React.Component {
     updateTotalMangoes = (value) => {
         var tempTotalMangoes = this.state.totalMangoes;
         tempTotalMangoes.totalMangoes = value;
-        this.setState({ tempTotalMangoes });
+        this.setState({ tempTotalMangoes});
     }
 
     updateTotalMangoesShow = (value) => {
@@ -170,7 +105,7 @@ class Division7 extends React.Component {
     updateScore = () => {
         var gameScore = this.state.questions;
         gameScore.score += 1;
-        this.setState({ gameScore });
+        this.setState({ gameScore});
     }
 
     updateWrong = () => {
@@ -187,8 +122,8 @@ class Division7 extends React.Component {
 
     resetPersonsMangoes = () => {
         var gamePersonsMangoes = this.state.personsMangoes;
-        gamePersonsMangoes.personsMangoes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-        this.setState({ gamePersonsMangoes });
+        gamePersonsMangoes.personsMangoes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] ;
+        this.setState({ gamePersonsMangoes});
     }
 
     resetForNextRound = () => {
@@ -206,16 +141,16 @@ class Division7 extends React.Component {
             document.querySelector('input[name="personRadio9"]:checked').checked = false;
         } catch (Exception) { }
     }
-
+   
     render() {
         return (
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-md-6 border">
-                        <NewGameButtonRow status={this.state.status.status} /> <hr />
+                        <NewGameButtonRow status={this.state.status.status}  /> <hr />
                         <ResultShowRow result={this.state.questions} /><hr />
-                        <ResponseMsgShowRow /><hr />
-                        <GameStatusShowRow status={this.state.status.status} totalMangoes={this.state.totalMangoes.totalMangoes} totalPersons={this.state.totalPersons.totalPersons} totalMangoesShow={this.state.totalMangoesShow.totalMangoesShow} />  <hr />
+                        <ResponseMsgShowRow /><hr/>
+                        <GameStatusShowRow status={this.state.status.status }  totalMangoes={this.state.totalMangoes.totalMangoes} totalPersons={this.state.totalPersons.totalPersons} totalMangoesShow={this.state.totalMangoesShow.totalMangoesShow} />  <hr />
                         <QuestionsShowRow totalMangoes={this.state.totalMangoes.totalMangoes} /> <hr />
                         <AllPersonsShowRow totalPersons={this.state.totalPersons.totalPersons} personsMangoes={this.state.personsMangoes.personsMangoes} />
                         <br /> <br />
@@ -228,7 +163,7 @@ class Division7 extends React.Component {
 }
 
 function getRandomNo() {
-    var number = Math.floor((Math.random() * 8) + 2);
+    var number =  Math.floor((Math.random() * 8) + 2);
     return number;
 }
 
@@ -255,8 +190,8 @@ const ResultShowRow = (props) => {
 const MangoesShowRow = (props) => {
     var tempArray = []
     for (var i = 0; i < Number(props.totalMangoes); i++) {
-        tempArray.push(<div className="col-xs-1 px-1 text-center "> <img src={Mango} className=" " alt="" /> </div>)
-    }
+            tempArray.push(<div className="col-xs-1 px-1 text-center "> <img src={Mango} className=" " alt="" /> </div>)
+        }
     return (
         tempArray
     );
@@ -266,39 +201,39 @@ const QuestionsShowRow = (props) => {
     return (
         <div className="row px-2">
             <MangoesShowRow totalMangoes={props.totalMangoes} />
-        </div>
+       </div>
     );
 }
 
 const GameInfoShowRow = () => {
     return (
-        <div className="col-md-6 pl-5">
-            <div className="text-left  text-dark">
+            <div className="col-md-6 pl-5">
+                <div className="text-left  text-dark">
                 <div className="h4"> &#9876; Fast-track arithmetic </div>
-                <ul className="list-group small text-dark ">
-                    <li className="list-group-item"><span className="small text-info">Goal &#10095; </span> Simple arithmetic improvement</li>
-                    <li className="list-group-item"><span className="small text-info">Objective &#10095; </span>Answer 10 simple arithmetic (+, -, *, /) questions   in 60 seconds</li>
-                    <li className="list-group-item"><span className="small text-info">Procudure &#10095;</span><br />
-                        <ul>
-                            <li>Press  <kbd className="bg-success text-white">New game</kbd> button</li>
-                            <li>Waite for 3 seconds and then start answering questions</li>
-                            <li>For each box write answer and press <kbd>Enter</kbd>button on keyboard.</li>
-                            <li>Each correct answer gives 2 extra seconds </li>
-                            <li>Each wrong answer will cost 8 seconds </li>
-                            <li>if all quesitons are answered in 60 seconds <br />
+                    <ul className="list-group small text-dark ">
+                        <li className="list-group-item"><span className="small text-info">Goal &#10095; </span> Simple arithmetic improvement</li>
+                        <li className="list-group-item"><span className="small text-info">Objective &#10095; </span>Answer 10 simple arithmetic (+, -, *, /) questions   in 60 seconds</li>
+                        <li className="list-group-item"><span className="small text-info">Procudure &#10095;</span><br />
+                            <ul>
+                                <li>Press  <kbd className="bg-success text-white">New game</kbd> button</li>
+                                <li>Waite for 3 seconds and then start answering questions</li>
+                                <li>For each box write answer and press <kbd>Enter</kbd>button on keyboard.</li>
+                                <li>Each correct answer gives 2 extra seconds </li>
+                                <li>Each wrong answer will cost 8 seconds </li>
+                                <li>if all quesitons are answered in 60 seconds <br />
                                 <ul>
                                     <li>Press <kbd className="bg-warning text-dark">Next round</kbd>  button for next level</li>
-                                    <li>Next level also have 10 questions but with 57 seconds allowed time.</li>
-                                    <li>More heigher level will have even less time and so on</li>
-                                </ul>
-                            </li>
-                            <li>If player cannot answer all question in 60 seconds, then game will finish and have to start new game</li>
-                        </ul>
-                    </li>
-                    <li className="list-group-item"><span className="small text-info">Tips &#10095; </span> Have fun..</li>
-                </ul>
+                                        <li>Next level also have 10 questions but with 57 seconds allowed time.</li>
+                                        <li>More heigher level will have even less time and so on</li>
+                                    </ul>
+                                </li>
+                                <li>If player cannot answer all question in 60 seconds, then game will finish and have to start new game</li>
+                            </ul>
+                        </li>
+                        <li className="list-group-item"><span className="small text-info">Tips &#10095; </span> Have fun..</li>
+                    </ul>
+                </div>
             </div>
-        </div>
     );
 }
 
@@ -341,25 +276,25 @@ const AllPersonsShowRow = (props) => {
 }
 
 const PersonShowRow = (props) => {
-    var radioName = "personRadio" + props.personID;
+    var radioName = "personRadio" +  props.personID;
     return (
-        <aside className="border mt-3">
-            <div className="row">  <div className="col-12 h5 text-warning">{props.personName}</div> </div>
-            <div className="row">
-                <div className="col-6">
-                    <div className="row pl-5">
-                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="1" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 1) }} />1</div>
-                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="2" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 2) }} />2 </div>
-                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="3" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 3) }} />3 </div>
-                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="4" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 4) }} />4 </div>
-                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="5" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 5) }} />5 </div>
-                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="6" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 6) }} />6 </div>
-                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="7" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 7) }} />7 </div>
-                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="8" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 8) }} />8 </div>
-                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="9" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 9) }} />9 </div>
+            <aside className="border mt-3">
+                <div className="row">  <div className="col-12 h5 text-warning">{props.personName}</div> </div>
+                <div className="row">
+                    <div className="col-6">
+                        <div className="row pl-5">
+                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="1" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 1) }}/>1</div>
+                            <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="2" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 2) }}/>2 </div>
+                            <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="3" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 3) }}/>3 </div>
+                            <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="4" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 4) }}/>4 </div>
+                            <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="5" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 5) }}/>5 </div>
+                            <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="6" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 6) }}/>6 </div>
+                            <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="7" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 7) }}/>7 </div>
+                            <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="8" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 8) }}/>8 </div>
+                        <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="9" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 9) }}/>9 </div>
                         <div className="text-left col-md-4 col-sm-6 col-6  "> <input type="radio" className="form-check-input" name={radioName} value="10" onClick={() => { window.divisioin7MainClass.updatePersonsMangoes(props.personID, 10) }} />10 </div>
+                        </div>
                     </div>
-                </div>
                 <div className="col-6"><div className="row"> <MangoesShowRow totalMangoes={props.givenMangoes} /></div></div>
             </div>
         </aside>
@@ -367,7 +302,7 @@ const PersonShowRow = (props) => {
 }
 
 function errorMsgText(msg) {
-    document.getElementById('msgShow').innerHTML = msg;
+     document.getElementById('msgShow').innerHTML = msg;
 }
 
 function checkAnswer(totalPersons, personalMangoesArray) {
@@ -380,5 +315,3 @@ function checkAnswer(totalPersons, personalMangoesArray) {
 }
 
 export default Division7;
-
-
