@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import GamesPage from "../games/bullscows/GamesPage";
 import PhoneNumber from "../games/phonenumber/PhoneNumber";
 import FastTrackFile from "../games/fasttrack/FastTrack";
@@ -8,8 +8,8 @@ const SevenYearAbout = () => {
         <div className="container pt-4 border">
             <GameNumbers />
             <div className="card-columns pt-4">
-                <CommingSoon />
-             </div>
+                <Division7 />
+            </div>
         </div>
     );
 }
@@ -30,16 +30,16 @@ const GameNumbers = () => {
     )
 }
 
-const CommingSoon = () => {
+const Division7 = () => {
     return (
         <div className="card shadow">
-            <div className="card-img-top display-1 text-bold text-center text-danger" >&#9865;</div>
+            <div className="card-img-top display-1 text-bold text-center text-danger" >&divide;</div>
             <div className="card-body">
-                <h4 className="card-title"><span className="badge badge-secondary border">101 </span> Comming soon </h4>
-                <p className="card-text"><span className="small">Game role &#10095; </span><br />
-                    
-                 </p>
-                <a href="/"  className="btn btn-success btn-block"> Comming soon </a>
+                <h4 className="card-title"><span className="badge badge-secondary border">101 </span> Division 7 </h4>
+                <p className="card-text"><span className="small">Spil rolle &#10095; Grundlæggende division øvelse  for et barn under 7 år</span><br />
+
+                </p>
+                <a href="/division7" className="btn btn-success btn-block"> Spille </a>
             </div>
         </div>
     )

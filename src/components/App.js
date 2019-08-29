@@ -10,7 +10,9 @@ import Quento from "./games/quento/Quento";
 import Extra from "./games/extra/Extra";
 
 import Ten from "./ten/TenYearAbout";
+
 import Seven from "./seven/SevenYearAbout";
+import Division7 from "./seven/division7/Division7";
 
 import Five from "./five/FiveYearAbout";
 import Shapes5 from "./five/shapes5/Shapes5";
@@ -44,9 +46,10 @@ function App() {
               <Route path="/five" component={Five} />
               <Route path="/shapes5" component={Shapes5} />
               <Route path="/shapes5learn" component={Shapes5Learn} />
-
-
+              
               <Route path="/seven" component={Seven} />
+              <Route path="/division7" component={Division7} />
+
               <Route path="/ten" component={Ten} />
 
               <Route path="/extra" component={Extra} />
