@@ -299,7 +299,7 @@ const GameBoxRow1 = () => {
                     <div className="col-12 shadBlack rounded game1Box  ">
                         <aside className="pad60">
                             <div className="row"><div className="col-12 h1 text-center "><span className="">&#9876;</span> <span className="centuryFont"> Fast-track </span></div> </div>
-                            <div className="row"><div className="col-12 text-center ">Solve 10 simple arithmatic questions in 52 seconds. Each right answer has 1 point and wrong has -2 points. Points are also increased with remaining time. </div></div>
+                            <div className="row"><div className="col-12 text-center ">Solve 10 simple arithmatic questions in 52 seconds. Each right answer has 1 point and wrong has -2 points. </div></div>
                             <div className="row"><div className="col-12 text-center py-2"> <a href="/fasttrack" component={FastTrack} className="btn btn-warning  mt-1  rounded circleButtGame1 boxAlign"> Play game </a> </div></div>
                         </aside>
                     </div>
