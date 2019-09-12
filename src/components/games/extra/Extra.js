@@ -1,169 +1,442 @@
 import React from "react";
-import ReactRough, { Rectangle, Circle, Polygon, Ellipse} from 'react-rough';
+import GamesPage from "../bullscows/GamesPage.js";
+import PhoneNumber from "../phonenumber/PhoneNumber.js";
+import FastTrack from "../fasttrack/FastTrack.js";
+import Denmark from '../../../css/imgs/denmark1.png';
 
-const Extra = () => {
+class Extra extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = this.getInitialState();
+        window.mainPageMainClass = this;
+    }
+    state = {};
+
+    getInitialState = () => {
+        const initialState =
+        {
+            number: {
+                number: [3, 5, 2, 4]
+            },
+            orignalNo: { orignalNo: 3524},
+            status: { status: 0 },
+            values: {
+                asc: [0, 0, 0, 0, 0, 0, 0, 0],
+                dsc: [0, 0, 0, 0, 0, 0, 0, 0],
+                numbers: [0, 0, 0, 0, 0, 0, 0, 0]
+            },
+            count: {count : 0}
+        }
+        return initialState;
+    }
+
+    updateNumber = (numberArray) => {
+        var tempNumber = this.state.number;
+        tempNumber.number = numberArray;
+        this.setState({ tempNumber });
+    }
+
+    updateOrignalNumber = (orignalNo) => {
+        var gameOrignalNo = this.state.orignalNo;
+        gameOrignalNo.orignalNo = orignalNo;
+        this.setState({ gameOrignalNo});
+    }
+
+    updateValues = (count) => {
+        var gameValues = this.state.values;
+        gameValues.numbers[count] = getNumber(this.state.number.number);
+        gameValues.asc[count] = getNumber(sortASC(this.state.number.number));
+        gameValues.dsc[count] = getNumber(sortDSC(this.state.number.number));
+        this.setState({ gameValues });
+    }
+
+    setCountZero = () => {
+        var gameCount = this.state.count;
+        gameCount.count = 0;
+        this.setState({ gameCount });
+    }
+
+    updateCount = () => {
+        var gameCount = this.state.count;
+        gameCount.count += 1;
+        this.setState({ gameCount });
+    }
+
+    getNewNumber = event => {
+        var value = 0; 
+        this.setCountZero();
+        var initArray = getRandomNo();
+        this.updateOrignalNumber(getNumber(initArray));
+        var counter = 0;
+        this.updateNumber(initArray);
+        while (counter < 7 && value !== 6174) {
+            var count = Number(this.state.count.count);
+            this.updateValues(count);
+            value = Number(this.state.values.dsc[count]) - Number(this.state.values.asc[count]);
+            this.updateNumber(getArrayFromNo(Number(value)));
+            this.updateCount();
+            counter++;
+        }
+  
+
+    }
+
+    render() {
+        
+        return (
+            <div className="container-fluid ">
+                <ShowFirstRow />
+                <ShowSecondRow number={this.state.orignalNo.orignalNo} count={this.state.count.count} values={this.state.values} />
+                <ShowThirdRow number={this.state.orignalNo.orignalNo} count={this.state.count.count} values={this.state.values} />
+                <ShowForthRow />
+            </div >
+        );
+    }
+}
+
+const ShowFirstRow = () => {
     return (
-        <div className="container pt-4 border">
-            <GameNumbers />
-            <div className="card-columns pt-4">
-                <Canvas />
+        <div className="row">
+            <div className="col-md-12 bgImg3">
+                <div className="siteTitle text-center"><div className="display-1 "> &#8752;<br /><span style={{ "font-weight": "800" }}>Loetal</span> </div>
+                    <span className="h4 text-white">Og vi kan godt lide at lege med tal! </span>
+                </div> 
             </div>
         </div>
     );
 }
 
-const Canvas = () => {
+const ShowSecondRow  = (props) => {
+    return (
+        <div className="row bgImg4">
+            <div className="col-md-12 alignCenter py-5" >
+                <div className="row  "><div className="col-12 h2 centuryFont "> <span className="display-4 text-warning">&#8576; </span> 6174 Kapreka's constant  </div> </div>
+                <div className="row "> <div className="col-md-12">6174 is known as Kaprekar's constant after the Indian mathematician D. R. Kaprekar. This number is notable as it always acheived with maximum 7 iterations:  Read more <a href="https://en.wikipedia.org/wiki/6174_(number)" target="_blank"> here </a></div> </div>
+                
+                <div className="row py-4">
+                    <div className="col-12   ">
+                        <div className="row hP100">
+                            <div className="col-md-12 col-sm-12 col-xs-12 ">
+                                <aside className="boxAlign rounded-left ">
+                                    <NewGameRowShow /><hr />
+                                    <CurrentNoRowShow number={props.number} /><hr />
+                                    {Number(props.count) === 0 ? < ResultsTextBoxRowShow /> : <NewResultsTextBoxRowShow count={props.count} values={props.values} />} <hr />
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+const NewGameRowShow = (props) => {
+    return (
+        <aside>
+            <div className="row headPad px-2">
+                <div className="col-12 text-right"><button type="button" className="btn btn-success btn-sm mt-1  rounded-circle circleButt boxAlign"  onClick={window.mainPageMainClass.getNewNumber}> Next </button> </div>
+             </div>
+        </aside>
+    );
+}
+
+const CurrentNoRowShow = (props) => {
+    return (
+        <div className="row">
+            <div className="col-12 px-4 text-left"><span className="small">     Random No: </span> <span> {props.number} </span> </div>
+        </div>
+    );
+}
+
+const ResultsTextBoxRowShow = (props) => {
     return (
         <div>
-            <ReactRough width={620} height={2500} >
-                //squre
-                <Rectangle points={[10, 10, 140, 140]} fill="rgba(255,113,13, 0.3)" />
-                <Circle points={[90, 230, 140]} fill="rgba(255,113,13, 0.3)" />
-                <Rectangle points={[10, 320, 140, 50]} fill="rgba(255,113,13, 0.3)" />
-                //-Triangle
-                <Polygon points={[[[100, 400], [10, 540], [190, 540]]]} fill="rgba(255,113,13, 0.3)" />
-                //-Right Triangle
-                <Polygon points={[[[150, 550], [150, 690], [10, 690]]]} fill="rgba(255,113,13, 0.3)" />
-                //-Diamond
-                <Polygon points={[[[100, 710], [50, 780], [100, 850],  [150, 780] ]]} fill="rgba(255,113,13, 0.3)" />
-                //-Ovel ([x, y, width, height]
-                <Ellipse points={[90, 970, 100, 180]} fill="rgba(255,113,13, 0.3)" />
-                //-Trapezium
-                <Polygon points={[[[40, 1100], [10, 1230], [150, 1230], [90, 1100]  ]]} fill="rgba(255,113,13, 0.3)" />
-                //-	Parallelogram [p1, p2, p3, p4]
-                <Polygon points={[[[60, 1300], [10, 1420], [190, 1420], [240, 1300]]]} fill="rgba(255,113,13, 0.3)" />
-                //-Pentagon [p1, p2, p3, p4, p5]
-                <Polygon points={[[[80, 1450], [10, 1520], [30, 1590], [120, 1590], [150, 1520]]]} fill="rgba(255,113,13, 0.3)" />
-                //-Hexagon [p1, p2, p3, p4, p5, p6]
-                <Polygon points={[[[50, 1620], [10, 1690], [50, 1760], [120, 1760], [160, 1690], [120, 1620]]]} fill="rgba(255,113,13, 0.3)" />
-                //-Heptagon
-                <Polygon points={[[[85, 1800], [25, 1835], [10, 1902], [50, 1960], [130, 1960], [170, 1903], [155, 1835]]]} fill="rgba(255,113,13, 0.3)" />
-                //-Start
-                <Polygon points={[[[100, 1960], [80, 2020], [10, 2020], [68, 2065], [38, 2140], [100, 2090], [165, 2140], [140, 2065], [200, 2020], [125, 2020]]]} fill="rgba(255,113,13, 0.3)" />
+            <div className="row px-2">
+                <div className="col-2 text-info"> <u>ASC </u></div>
+                <div className="col-2 text-info"> </div>
+                <div className="col-2 text-info"> <u>DES</u> </div>
+                <div className="col-2 text-info">  </div>
+                <div className="col-2 text-info"> <u>No.</u> </div>
+                <div className="col-2 text-info"> <u>...</u> </div>
+            </div>
 
+            <div className="row  my-2 px-2">
+                <div className="col-2 " >5432 </div>
+                <div className="col-2  text-danger">-</div>
+                <div className="col-2 ">2345</div>
+                <div className="col-2  text-info" >= </div>
+                <div className="col-2 ">3087</div>
+                <div className="col-2 ">1 </div>
+            </div>
 
-                ///-(100, 1960), (80, 2020), (10, 2020), (50, 2070),  (40, 2140), (100, 2090), (160, 2140), (90,  2070), (130, 2020), (100, 2020)
+            <div className="row  my-2 px-2">
+                <div className="col-2" >8730 </div>
+                <div className="col-2 text-danger">-</div>
+                <div className="col-2">0378</div>
+                <div className="col-2 text-info">= </div>
+                <div className="col-2">8352</div>
+                <div className="col-2">2 </div>
+            </div>
 
-            </ReactRough>
-            <br/>
+            <div className="row  my-2 px-2">
+                <div className="col-2" >8532 </div>
+                <div className="col-2 text-danger">-</div>
+                <div className="col-2">2358</div>
+                <div className="col-2 text-info" >= </div>
+                <div className="col-2">6174</div>
+                <div className="col-2">3 </div>
+            </div>
+
+            <div className="row  my-2 px-2">
+                <div className="col-2" >7641 </div>
+                <div className="col-2 text-danger">-</div>
+                <div className="col-2">1467</div>
+                <div className="col-2 text-info">= </div>
+                <div className="col-2"> <span className="h4 text-warning"> 6174 </span></div>
+                <div className="col-2">4 </div>
+            </div>
+
         </div>
-    )
+    );
 }
 
-
-const GameNumbers = () => {
+const NewResultsTextBoxRowShow = (props) => {
+    const rows = [];
+    for (var i = 0; i < props.count; i++) {
+        rows.push(<SingleValueShow dsc={props.values.dsc[i]} asc={props.values.asc[i]} term={i + 1} />);
+    }
     return (
-        <aside>
-            <div className="row pl-4 ">
-                <div className="col-xs-1 text-right numberOne h2"> </div>
-                <div className="col-xs-1 text-left  numberTwo h2">&#10102;</div>
-                <div className="col-xs-4  pl-1 text-info"><span className="h2 tempFontPrincess"> Extra</span> <span className=" tempFontOpenSans small">(Extra page)</span></div>
-                <div className="col-xs-6"></div>
+        <div>
+            <div className="row px-2">
+                <div className="col-2 text-info"> <u>ASC </u></div>
+                <div className="col-2 text-info"> </div>
+                <div className="col-2 text-info"> <u>DES</u> </div>
+                <div className="col-2 text-info">  </div>
+                <div className="col-2 text-info"> <u>No.</u> </div>
+                <div className="col-2 text-info"> <u>...</u> </div>
             </div>
-            <div className="row border-bottom px-2">
-                <div className="col-xs-12 small">Here will be list of games for 3 years old students.... </div>
-            </div>
-        </aside>
-    )
+            {rows}
+        </div>
+    );
 }
 
-const CommingSoon = () => {
+const SingleValueShow = (props) => {
+    let newNo =  Number(props.dsc) - Number(props.asc);
     return (
-        <div className="card shadow">
-            <div className="card-img-top display-1 text-bold text-center text-danger" >&#9865;</div>
-            <div className="card-body">
-                <h4 className="card-title"><span className="badge badge-secondary border">101 </span> Comming soon </h4>
-                <p className="card-text"><span className="small">Game role &#10095; </span><br />
+        <div className="row  my-2 px-2">
+            <div className="col-2 " >{props.dsc} </div>
+            <div className="col-2  text-danger">-</div>
+            <div className="col-2 ">{props.asc}</div>
+            <div className="col-2  text-info" >= </div>
+            <div className="col-2 ">{newNo === 6174 ? <span className="h4 text-warning"> {newNo} </span> : newNo}</div>
+            <div className="col-2 ">{Number(props.term)}</div>
+        </div>
+        );
+}
 
-                </p>
-                <a href="/" className="btn btn-success btn-block"> Comming soon </a>
+const ShowThirdRow = () => {
+    return (
+        <div className="row bgImg5">
+            <div className="col-md-12 alignCenter py-5" >
+                <div className="row  "><div className="col-12 text-info  "><span className="h1">&#9847; </span> <span className="h2 centuryFont"> Favourite games</span>  </div> </div>
+                <GameBoxRow1 />
+                <GameBoxRow2 />
             </div>
         </div>
-    )
+    );
 }
 
-const NamesOFShapes = () => {
-    //Number(props.turn) === 0 ? <SqureShow /> : Number(props.turn) === 1 ? <CircleShow /> : Number(props.turn) === 2 ? <ReactangleShow />
-    //    : Number(props.turn) === 3 ? <TriangleShow /> : Number(props.turn) === 4 ? <RightTriangleShow /> : Number(props.turn) === 5 ? <DiamondShow />
-    //        : Number(props.turn) === 6 ? <OvelShow /> : Number(props.turn) === 7 ? <TrapeziumShow /> : Number(props.turn) === 8 ? <ParallelogramShow />
-    //            : Number(props.turn) === 9 ? <PentagonShow /> : Number(props.turn) === 10 ? <HexagonShow /> : Number(props.turn) === 11 ? <HeptagonShow /> : <StarShow />
-    /*
-
-    <div className="row">
-        <div className="col-1 "></div>
-        <div className="col-3 "> <button className="text-white btn btn-danger" onClick={() => { window.colors3MainClass.updateWrong() }} disabled={Number(props.status) === 1 ? false : true} >Forkert</button></div>
-        <div className="col-1 "></div>
-        <div className="col-5 text-left"> <button className="text-white btn btn-primary" onClick={() => { window.colors3MainClass.updateCorrect() }} disabled={Number(props.status) === 1 ? false : true}>Korrekt</button></div>
-    </div>
-
-
-    <div className="col-md-6 text-left"><label> <input type="radio" className="form-check-input" name="optradio" onClick={() => { window.colors3MainClass.updateSelectedShape(props.selectOptions[0]) }} value={props.selectOptions[0]} />{props.selectOptions[0]} </label> </div>
-                    <div className="col-md-6 text-left"><label>  <input type="radio" className="form-check-input" name="optradio" onClick={() => { window.colors3MainClass.updateSelectedShape(props.selectOptions[1]) }} value={props.selectOptions[1]} />{props.selectOptions[1]} </label> </div>
-
-
-
-
-
-                <ReactRough height="200" width="240" className="border">
-                    <Polygon points={[[[10, 1], [30, 60], [0, 60], [6, 105], [38, 180], [100, 180], [165, 180], [180, 105], [200, 5], [125, 60]]]} fill="rgba(255,113,13, 0.3)" />
-                </ReactRough><br />
-
-
-
-*/
-}
-
-const extraMethodToDelete1 = () => {
+const GameBoxRow2 = () => {
     return (
-        <aside>
-            <div className="row">
-                <div className="col-6"> <u>Guessed  </u></div>
-                <div className="col-3"> <u>Exist</u></div>
-                <div className="col-3"> <u>Match</u> </div>
-            </div>
-            <div className="row  my-2">
-                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess-1" value={this.state.bullsCows.stage > 0 ? (this.state.enteredNumber.numbers[0]) : ''} disabled /></div>
-                <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40" id="digit1Exis" value={this.state.bullsCows.stage > 0 ? (this.state.enteredNumber.exists[0]) : ''} disabled /></div>
-                <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40" id="digit1Match" value={this.state.bullsCows.stage > 0 ? (this.state.enteredNumber.matches[0]) : ''} disabled /> </div>
-            </div>
-            <div className="row  my-2">
-                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess2" value={this.state.bullsCows.stage > 1 ? (this.state.enteredNumber.numbers[1]) : ''} disabled /></div>
-                <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40" id="digit1Exis" value={this.state.bullsCows.stage > 1 ? (this.state.enteredNumber.exists[1]) : ''} disabled /></div>
-                <div className="col-3"> <input type="test" className="col-12 form-control  inputFont40" id="digit1Match" value={this.state.bullsCows.stage > 1 ? (this.state.enteredNumber.matches[1]) : ''} disabled /> </div>
-            </div>
-            <div className="row  my-2">
-                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess3" value={this.state.bullsCows.stage > 2 ? (this.state.enteredNumber.numbers[2]) : ''} disabled /></div>
-                <div className="col-3"> <input type="text" className="col-12 form-control  inputFont40" id="digit1Exis" value={this.state.bullsCows.stage > 2 ? (this.state.enteredNumber.exists[2]) : ''} disabled /></div>
-                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={this.state.bullsCows.stage > 2 ? (this.state.enteredNumber.matches[2]) : ''} disabled /> </div>
-            </div>
-            <div className="row  my-2">
-                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess4" value={this.state.bullsCows.stage > 3 ? (this.state.enteredNumber.numbers[3]) : ''} disabled /></div>
-                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Exis" value={this.state.bullsCows.stage > 3 ? (this.state.enteredNumber.exists[3]) : ''} disabled /></div>
-                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={this.state.bullsCows.stage > 3 ? (this.state.enteredNumber.matches[3]) : ''} disabled /> </div>
-            </div>
-            <div className="row  my-2">
-                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess5" value={this.state.bullsCows.stage > 4 ? (this.state.enteredNumber.numbers[4]) : ''} disabled /></div>
-                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Exis" value={this.state.bullsCows.stage > 4 ? (this.state.enteredNumber.exists[4]) : ''} disabled /></div>
-                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={this.state.bullsCows.stage > 4 ? (this.state.enteredNumber.matches[4]) : ''} disabled /> </div>
-            </div>
-            <div className="row  my-2">
-                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess6" value={this.state.bullsCows.stage > 5 ? (this.state.enteredNumber.numbers[5]) : ''} disabled /></div>
-                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Exis" value={this.state.bullsCows.stage > 5 ? (this.state.enteredNumber.exists[5]) : ''} disabled /></div>
-                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={this.state.bullsCows.stage > 5 ? (this.state.enteredNumber.matches[5]) : ''} disabled /> </div>
-            </div>
-            <div className="row  my-2">
-                <div className="col-6" > <input type="text" className="col-12 form-control inputFont40" id="digigtGuess7" value={this.state.bullsCows.stage > 6 ? (this.state.enteredNumber.numbers[6]) : ''} disabled /></div>
-                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Exis" value={this.state.bullsCows.stage > 6 ? (this.state.enteredNumber.exists[6]) : ''} disabled /></div>
-                <div className="col-3"> <input type="number" className="col-12 form-control  inputFont40" id="digit1Match" value={this.state.bullsCows.stage > 6 ? (this.state.enteredNumber.matches[6]) : ''} disabled /> </div>
+        <div className="row">
+            <div className="col-md-4 my-3">
+                <div className="row mx-1 hP100">
+                    <div className="col-12 shadBlack rounded game3Box ">
+                        <aside className="pad60">
+                            <div className="row"><div className="col-12 h1 text-center "><span className="text-warning">&#8506;</span> <span className="centuryFont"> BullsCows </span></div> </div>
+                            <div className="row"><div className="col-12 text-center ">Find a 4 digits number with maximum 7 chances. Number can't start with 0, can't have digit repetition. </div></div>
+                            <div className="row"><div className="col-12 text-center py-2"> <a href="/games" className="btn btn-default mt-1 rounded circleButtGame1 boxAlign text-white"> Play game </a> </div></div>
+                        </aside>
+                    </div>
+                </div>
             </div>
 
-        </aside>
+            <div className="col-md-4 my-3">
+                <div className="row mx-1 hP100">
+                    <div className="col-12 shadBlack rounded game3Box  ">
+                        <aside className="pad60">
+                            <div className="row"><div className="col-12 h1 text-center noPadding "><span className="text-info">&#9816;</span><span className="centuryFont">RememberMe </span></div> </div>
+                            <div className="row"><div className="col-12 text-center ">Remember an 8 digits number for few seconds and then enter in form of 4 numbers of double digits   </div></div>
+                            <div className="row"><div className="col-12 text-center py-2"> <a href="/phonenumber" className="btn btn-default mt-1 rounded circleButtGame1 boxAlign text-white"> Play game </a> </div></div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
 
+            <div className="col-md-4 my-3">
+                <div className="row mx-1 hP100">
+                    <div className="col-12 shadBlack rounded game3Box  ">
+                        <aside className="pad60">
+                            <div className="row"><div className="col-12 h1 text-center "><span className="text-danger">&#9906;</span> <span className="centuryFont"> PlaceMe </span></div> </div>
+                            <div className="row"><div className="col-12 text-center ">Place digits between 1 to 9 on valid position to get a total written in diagonal, horizontal or vertical direction. </div></div>
+                            <div className="row"><div className="col-12 text-center py-2"> <a href="/placeme" className="btn btn-default mt-1 rounded circleButtGame1 boxAlign text-white"> Play game </a> </div></div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    );
+}
+
+const GameBoxRow1 = () => {
+    return (
+        <div className="row">
+            <div className="col-md-8  my-3 hP100">
+                <div className="row mx-1 hP100">
+                    <div className="col-12 shadBlack rounded game1Box  ">
+                        <aside className="pad60">
+                            <div className="row"><div className="col-12 h1 text-center "><span className="">&#9876;</span> <span className="centuryFont"> Fast-track </span></div> </div>
+                            <div className="row"><div className="col-12 text-center ">Solve 10 simple arithmatic questions in 52 seconds. Each right answer has 1 point and wrong has -2 points. Points are also increased with remaining time. </div></div>
+                            <div className="row"><div className="col-12 text-center py-2"> <a href="/fasttrack" component={FastTrack} className="btn btn-warning  mt-1  rounded circleButtGame1 boxAlign"> Play game </a> </div></div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+            <div className="col-md-4 my-3">
+                <div className="row mx-1 hP100">
+                    <div className="col-12 shadBlack rounded game2Box  ">
+                        <aside className="pad60">
+                            <div className="row"><div className="col-12 h1 text-center "><span className="">&#8474;</span> <span className="centuryFont"> Quento </span></div> </div>
+                            <div className="row"><div className="col-12 text-center ">Add or subtract digits to find a total between 10 and 25.. </div></div>
+                            <div className="row"><div className="col-12 text-center py-2"> <a href="/quento"  className="btn btn-default mt-1 rounded circleButtGame1 boxAlign text-white"> Play game </a> </div></div>
+                        </aside>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        );
+}
+
+
+const ShowForthRow = () => {
+    return (
+        <div className="row bgImg6">
+            <div className="col-md-12 alignCenter py-5" >
+                <div className="row">
+                    <div className="col-md-6 col-sm-12 col-xs-12 text-white centuryFont font-weight-bold h1  "><span className="">&#8752; </span> <span className=""> Loetal</span>  </div>
+                    <div className="col-md-6 col-sm-12 col-xs-12 py-2 text-right">
+                        <a href="/about"  className="btn btn-success btn-sm rounded circleButt boxAlign mx-2 pt-2 font-weight-bold"> 10Y </a>
+                        <a href="/seven" className="btn btn-info btn-sm rounded circleButt boxAlign mx-2 pt-2 font-weight-bold"> 7Y </a>
+                        <a href="/five" className="btn btn-primary btn-sm rounded circleButt boxAlign mx-2 pt-2 font-weight-bold text-white"> 5Y </a>
+                        <a href="/three" className="btn btn-danger btn-sm rounded circleButt boxAlign mx-2 pt-2 font-weight-bold"> 3Y </a>
+                    </div>
+                </div>
+
+                <div className="row border border-bottom-0"><div className="col-12 text-info"> </div> </div>
+
+                <div className="row pad60">
+
+                    <div className="col-md-4 col-sm-6 col-xs-12 px-3 pyt-2">
+                        <span className="h5 centuryFont"> About </span> <p className="centuryFont">Loetal contains vrious games which target children of different age groups. Each game has a specific goal like logic, arithmatic or memory development.
+                           <br /> <br />The site is in development phase, where change in material, layout or context can occur without any prior notice.   <br /> Loetal is only for entertaining or learning purpose and especially not handling with any financial deal or agreements.
+                            </p>
+                     </div>
+
+                    <div className="d-none d-sm-none d-md-block  col-md-4  ">
+                        <img src={Denmark} />
+                    </div>
+
+                    <div className="col-md-4 col-sm-6 col-xs-12 pt-4">
+                        <span className="h5 centuryFont"> Contact us </span>
+                        <ul className="centuryFont" style={{ "listStyle": "none" }}>
+                            <li className="text-warning">&#9750; Address </li>
+                            <li>Louisevej 8220, Braband </li>
+                            <li><br/></li>
+                            <li className="text-warning">&#9993; Email </li>
+                            <li> mydata650@hotmail.com </li>
+                        </ul>
+                    </div>
+                </div>
+                
+
+             
+                <div className="row bottom-fixed"><div className="col-12 text-white small centuryFont">Alle rights are reserver @Loetal 2019 </div> </div>
+            </div>
+        </div>
     );
 }
 
 
 
+
+
+
+
+const ShowQuete = (props) => {
+    return (
+        <aside className="text-dark">
+            <blockquote className="blockquote  text-right">{props.saying}!
+                <footer className="blockquote-footer text-danger"><i> {props.writer}</i></footer>
+            </blockquote>
+        </aside>
+    );
+}
+
+
+
+const ShowContact = () => {
+    return (
+        <aside className="text-white tempFontOpenSans py-5">
+            <div className="row"><div className="col-sm-12 h5">Contact: </div></div>
+            <div className="row"><div className="col-sm-12 ">&#9750; Address: </div></div>
+            <div className="row"><div className="col-sm-12 ">Louisevej 8220, Braband </div></div>
+            <div className="row"><div className="col-sm-12 "><br /><hr /><br /></div></div>
+            <div className="row"><div className="col-sm-12 "> &#9993;  mydata650@gmail.com   </div></div>
+        </aside>
+    );
+}
+
+
+
+function getRandomNo() {
+    var nos = [0, -2, -3, -4];
+    var counter = 0;
+    while (counter < 4) {
+        var tempNo = Math.floor((Math.random() * 10) + 0);
+        var exists = false;
+        for (var i = 0; i < counter + 1; i++) {
+            if (nos[i] === tempNo) { exists = true; }
+        }
+        if (exists === false) {
+            nos[counter] = tempNo;
+            counter++;
+        }
+    }
+    return nos;
+}
+
+function getNumber(array) {
+    var strValue = "";
+    for (var i = 0; i < array.length; i++) { strValue += array[i]; }
+    return parseInt(strValue);
+}
+
+function sortDSC(arry) {
+    return arry.sort(function (a, b) { return b - a });
+}
+
+function sortASC(arry) {
+    return arry.sort(function (a, b) { return a - b });
+}
+
+function getArrayFromNo(num ) {
+    let arr = Array.from(String(num), Number);
+    return arr
+}
 
 export default Extra;
 

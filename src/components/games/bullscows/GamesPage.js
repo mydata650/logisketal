@@ -383,7 +383,6 @@ function errorMsg(errorCode) {
     document.getElementById('msgShow').innerHTML = errors[errorCode];
 }
 function getRandomNo() {
-    
     var nos = [0, -2, -3, -4];
     var counter = 0;
     while (counter < 4) {

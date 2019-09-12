@@ -162,7 +162,8 @@ class Division7 extends React.Component {
     }
 }
 
-function getRandomNo() {
+
+const getRandomNo = () => {
     var number = Math.floor((Math.random() * 8) + 2);
     return number;
 }
