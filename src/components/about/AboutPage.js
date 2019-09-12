@@ -83,7 +83,7 @@ const RememberMe = () => {
         <div className="card shadow">
             <div className="card-img-top display-1 text-bold text-center text-danger" > &#9816; </div>
             <div className="card-body">
-                <h4 className="card-title"><span className="badge badge-secondary border">102 </span> Remember me </h4>
+                <h4 className="card-title"><span className="badge badge-secondary border">102 </span> RememberMe </h4>
                 <p className="card-text"><span className="small">Game role &#10095; short-term memory development </span><br />A game for the sake of memory development. Player has a chance to look at 8 digits number for 5 seconds, then he has to remember the number for next 10 seconds. The number should be remember in form of 4 double digits numbers like 43230954 has 43, 23, 09, 54.  </p>
                 <a href="/phonenumber" component={PhoneNumber} className="btn btn-success btn-block"> Play game </a>
             </div>

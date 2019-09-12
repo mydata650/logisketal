@@ -51,14 +51,14 @@
 * ======================================================= */
 
 html, body {
-  font-family: "Roboto", Arial, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.7;
-  color: black;
-  height: 100% !important;
-  position: relative;
-  width: 100%;
+    width: 100% !important;
+    font-family: "Roboto", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: black;
+    height: 100% !important;
+    position: relative;
 }
 
 /*# React specific */
@@ -70,13 +70,22 @@ html, body {
 .inputFont40 {
     font-size: 30px !important;
     font-weight: bold;
-    /*background-color: white !important;*/
-    /*height: 40px !important;*/
     letter-spacing: 10px;
     color: darkblue;
     padding: 0;
     height: 40px !important;
 }
+
+.inputFont20 {
+    font-size: 20px !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: darkblue;
+    padding: 0;
+    height: 25px !important;
+}
+
+
 .inputFont20 {
     font-size: 21px !important;
     font-weight: bold;
@@ -142,7 +151,9 @@ hr {
 }
 
 /**Background colors**/
-.bga1 {background-color: #56642A;}
+.bga1 {
+    background-color: #3c5e71;
+}
 .bga2 {background-color: #849531;}
 .bga3 {background-color: #92A332;}
 
@@ -153,8 +164,8 @@ hr {
 .bgc2 {background-color: #C19434;}
 .bgc3 {background-color: #34421E;}
 
-.bg1k {background-color: #659DBD;}
-.bg2k{background-color: #8D8741;}
+.bg1k {  background-color: #324e5e;}
+.bg2k{background-color: #e3e3e3;}
 .bg3k{background-color: #BC986A;}
 .bg4k{background-color: #5CDB95;}
 .bg5k{background-color: #5d5c61;}
@@ -178,7 +189,7 @@ hr {
 .footerHeight{min-height: 50px !important;}
 
 .bgImg1 {
-    background-image: url(./imgs/2.jpg); 
+    background-image: url(./imgs/2.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -218,6 +229,203 @@ hr {
     width: 50px !important;
 }
 
+.h100 {
+    height: 102vh !important;
+}
+
+.h100Min {
+    min-height: 101vh !important;
+}
+
+.hP100{
+    height: 100% !important;
+}
+
+.wP100 {
+    width: 100% !important;
+}
+
+.alignCenter {
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.wP100 {
+    max-width: 100% !important;
+    position: relative !important;
+    clear: both !important;
+    display: block !important;
+}
+
+/**Version2 with new home page**/
+
+.bgImg3 {
+    background-image: linear-gradient(rgba(0, 0, 0,   0.5), rgba(0, 0, 0,  0.5)),  url(./imgs/mainPage1.jpg);
+    height: 93vh !important;
+    width: 100vw !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/**#2a3132   */
+.bgImg4 {
+    background-color: #2a3132;
+    height: 100vh !important;
+    width: 100vw !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+/*#07575b   #003b46*/
+.bgImg5 {
+    background-color: #E8E8E8;
+    min-height: 100vh !important;
+    width: 100vw !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bgImg6 {
+    background-color: #0c374d;
+    min-height: 100vh !important;
+    width: 100vw !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.gameBox {
+    height: 35vh !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
+.game1Box {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./imgs/gamebox1.jpg);
+    max-width: 780px !important;
+    height: 35vh !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+.game2Box {
+    background-color: brown;
+    max-width: 780px !important;
+    height: 35vh !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+.game3Box {
+    background-color: #755139;
+    max-width: 780px !important;
+    height: 35vh !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.game4Box {
+    background-color: brown;
+    max-width: 780px !important;
+    height: 35vh !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.game5Box {
+    background-color: brown;
+    max-width: 780px !important;
+    height: 35vh !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.circleButt{
+    height:45px !important;
+    width: 45px !important;
+    border: 2px solid white !important;
+    padding-left: 5px !important;
+}
+
+.circleButtGame1 {
+    height: 45px !important;
+    width: 145px !important;
+    border: 2px solid white !important;
+    padding-left: 5px !important;
+}
+
+
+.siteTitle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.siteTitle div {
+        color: #fff;
+        font-size: 100px;
+        font-family: 'Century Gothic';
+    }
+
+navbar a {    color: white !important; }
+
+.nav-item a {
+    color: white !important;
+    padding: 5px 20px;
+    transition: 0.7s ease;
+}
+.nav-item a:hover {
+   background-color: #fff;
+   color: black !important;
+}
+.headBG {
+    background-color: #597272;
+}
+.centuryFont {font-family: 'Century Gothic';}
+.boxAlign {
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+}
+
+.shadBlack {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textCenter {
+    position: relative;
+    padding-top: 25%;
+}
+
+.verticalAlign{
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+}
+
+.verticalAlignPadd {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.bottom-fixed{
+    width: 100% !important;
+    border-top: 1px solid grey;
+    position: absolute;
+   bottom: 0;
+   right: 0;
+}
 /************************************media */
 @media (max-width: 575px) {
     .sizeTest{color: black;}
@@ -225,6 +433,9 @@ hr {
     .topPadBig { padding-top: 215px;}
     .topPadSmall { padding-top: 107px;}
     .classNoShow {  display: none !important; }
+    .pad60 {
+        margin-top: 20px !important;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -233,23 +444,27 @@ hr {
     .topPadBig { padding-top: 215px;}
     .topPadSmall { padding-top: 107px;}
     .classNoShow { display: none !important;}
-}
+    .pad60 { margin-top: 20px !important;   }
+    }
 
 @media (min-width: 768px) and (max-width: 991px) {
     .sizeTest{color: blue;}
     .classNoShow {
         display: none !important;
     }
-}
+    .pad60{ margin-top: 30px !important; }
+    }
 
 @media (min-width: 992px) and (max-width: 1199px) {
 .sizeTest{color: yellow;}
     .classNoShow {
         display: none !important;
     }
+    .pad60 {    margin-top: 30px !important;}
 }
 
 @media (min-width: 1200px) {
+    .pad60 { margin-top: 40px !important; }
 }
 
 /*end of media query*/

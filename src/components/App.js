@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import AboutPage from "./about/AboutPage";
@@ -8,6 +8,7 @@ import FastTrack from "./games/fasttrack/FastTrack";
 import PlaceMe from "./games/placeme/PlaceMe";
 import Quento from "./games/quento/Quento";
 import Extra from "./games/extra/Extra";
+import Extra2 from "./games/extra/Extra2";
 
 import Ten from "./ten/TenYearAbout";
 
@@ -31,7 +32,7 @@ function App() {
     <div className="">
 		<Header />
 		<Switch>
-			<Route exact path="/" component={HomePage} />
+             <Route exact path="/" component={HomePage} />
 			<Route path="/about" component={AboutPage} />
 			<Route path="/games" component={GamesPage} />
 			<Route path="/phonenumber" component={PhoneNumber} />
@@ -48,12 +49,13 @@ function App() {
               <Route path="/shapes5learn" component={Shapes5Learn} />
               
               <Route path="/seven" component={Seven} />
-              <Route path="/division7" component={Division7} />
+              <Route path="/division7" component={Division7}  />
 
               <Route path="/ten" component={Ten} />
 
               <Route path="/extra" component={Extra} />
-			<Route component={PageNotFound} />
+              <Route path="/extra2" component={Extra2} />
+			  <Route component={PageNotFound} />
 		</Switch>
     </div>
   );
