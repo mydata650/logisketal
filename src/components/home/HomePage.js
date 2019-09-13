@@ -1,8 +1,5 @@
 ﻿import React from "react";
-/*import GamesPage from "../bullscows/GamesPage.js";
-import PhoneNumber from "../phonenumber/PhoneNumber.js"; */
 import FastTrack from "../games/fasttrack/FastTrack.js";
-//import Denmark from './imgs/denmark1.png';
 import Denmark from './imgs/denmark1.png';
 
 class HomePage extends React.Component {

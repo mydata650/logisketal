@@ -271,7 +271,7 @@ hr {
 /**#2a3132   */
 .bgImg4 {
     background-color: #2a3132;
-    height: 100vh !important;
+    min-height: 100vh !important;
     width: 100vw !important;
     background-size: cover;
     background-position: center;
@@ -299,7 +299,7 @@ hr {
 }
 
 .gameBox {
-    height: 35vh !important;
+    min-height: 35vh !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; 
@@ -308,7 +308,7 @@ hr {
 .game1Box {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./imgs/gamebox1.jpg);
     max-width: 780px !important;
-    height: 35vh !important;
+    min-height: 35vh !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -317,7 +317,7 @@ hr {
 .game2Box {
     background-color: brown;
     max-width: 780px !important;
-    height: 35vh !important;
+    min-height: 35vh !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -326,7 +326,7 @@ hr {
 .game3Box {
     background-color: #755139;
     max-width: 780px !important;
-    height: 35vh !important;
+    min-height: 35vh !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -336,7 +336,7 @@ hr {
 .game4Box {
     background-color: brown;
     max-width: 780px !important;
-    height: 35vh !important;
+    min-height: 35vh !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -346,7 +346,7 @@ hr {
 .game5Box {
     background-color: brown;
     max-width: 780px !important;
-    height: 35vh !important;
+    min-height: 35vh !important;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
